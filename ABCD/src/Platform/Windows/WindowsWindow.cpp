@@ -6,6 +6,8 @@
 #include "ABCD/Events/MouseEvent.h"
 #include "ABCD/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace abcd
 {
     static bool s_GLFWInitialized = false;
@@ -50,6 +52,8 @@ namespace abcd
 
         mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(mWindow);
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        AB_CORE_ASSERT(status, "Failed to initialize Glad!");
         glfwSetWindowUserPointer(mWindow, &mData);
         SetVSync(true);
 

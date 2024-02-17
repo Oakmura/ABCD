@@ -14,12 +14,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "ABCD/vendor/GLFW/include"
+IncludeDir["Glad"] = "ABCD/vendor/Glad/include"
 
 group "Dependencies"
 	include "ABCD/vendor/GLFW"
+  include "ABCD/vendor/Glad"
 group ""
 
 include "ABCD/vendor/GLFW"
+include "ABCD/vendor/Glad"
 
 project "ABCD"
 	location "ABCD"
@@ -43,12 +46,14 @@ project "ABCD"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
   links 
 	{ 
 		"GLFW",
+    "Glad",
 		"opengl32.lib"
 	}
 
@@ -60,6 +65,7 @@ project "ABCD"
 		{
 			"AB_PLATFORM_WINDOWS",
 			"AB_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
