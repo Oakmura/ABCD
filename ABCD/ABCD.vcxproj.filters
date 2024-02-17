@@ -27,9 +27,15 @@
     <ClInclude Include="src\ABCD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
