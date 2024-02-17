@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-#include <functional>
-
+#include "abpch.h"
 #include "ABCD/Core.h"
 
 namespace abcd

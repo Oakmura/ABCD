@@ -2,6 +2,8 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "ABCD/Events/ApplicationEvent.h"
+
 #include "IWindow.h"
 
 namespace abcd
@@ -13,6 +15,10 @@ namespace abcd
         virtual ~Application();
 
         void Run();
+        void OnEvent(Event& e);
+
+    private:
+        bool onWindowClose(WindowCloseEvent& e);
 
     private:
         std::unique_ptr<IWindow> mWindow;
