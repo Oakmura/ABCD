@@ -17,11 +17,11 @@ namespace abcd
     void Application::Run()
     {
         WindowResizeEvent e(1280, 720);
-        if (e.IsInCategory(EVENT_CATEGORY_APPLICATION))
+        if (e.IsInCategory(EventCategoryApplication))
         {
             AB_TRACE(e);
         }
-        if (e.IsInCategory(EVENT_CATEGORY_INPUT))
+        if (e.IsInCategory(EventCategoryInput))
         {
             AB_TRACE(e);
         }
