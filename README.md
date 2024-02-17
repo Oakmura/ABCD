@@ -16,3 +16,7 @@ While ABCD initially replicates Hazel's functionality, I plan to introduce some 
 ## License
 
 This project is licensed under the Apache License - see the  [LICENSE](https://github.com/Oakmura/ABCD/blob/main/LICENSE)  file for details
+
+## Acknowledgements
+
+-  Thank you to TheCherno for providing such informative contents!
