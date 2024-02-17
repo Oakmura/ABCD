@@ -24,7 +24,24 @@ namespace abcd
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 
-        AB_CORE_TRACE("{0}", e);
+        for (auto it = mLayerStack.end(); it != mLayerStack.begin(); )
+        {
+            (*--it)->OnEvent(e);
+            if (e.mbHandled)
+            {
+                break;
+            }
+        }
+    }
+
+    void Application::PushLayer(Layer* layer)
+    {
+        mLayerStack.PushLayer(layer);
+    }
+
+    void Application::PushOverlay(Layer* layer)
+    {
+        mLayerStack.PushOverlay(layer);
     }
 
     bool Application::onWindowClose(WindowCloseEvent& e)

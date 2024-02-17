@@ -32,7 +32,6 @@ namespace abcd
 
     class AB_API Event
     {
-        friend class EventDispatcher;
     public:
         virtual eEventType GetEventType() const = 0;
         virtual const char* GetName() const = 0;
@@ -43,7 +42,7 @@ namespace abcd
         {
             return GetCategoryFlags() & category;
         }
-    protected:
+
         bool mbHandled = false;
     };
 

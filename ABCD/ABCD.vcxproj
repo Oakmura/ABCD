@@ -152,6 +152,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ABCD\Layer.h" />
+    <ClInclude Include="src\ABCD\LayerStack.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Application.h" />
     <ClInclude Include="src\ABCD\Core.h" />
@@ -166,6 +168,8 @@
     <ClInclude Include="src\abpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ABCD\Layer.cpp" />
+    <ClCompile Include="src\ABCD\LayerStack.cpp" />
     <ClCompile Include="src\ABCD\Application.cpp" />
     <ClCompile Include="src\ABCD\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
