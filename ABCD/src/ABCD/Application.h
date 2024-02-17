@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "IWindow.h"
 
 namespace abcd
 {
@@ -12,6 +13,10 @@ namespace abcd
         virtual ~Application();
 
         void Run();
+
+    private:
+        std::unique_ptr<IWindow> mWindow;
+        bool mbRunning = true;
     };
 
     Application* CreateApplication();

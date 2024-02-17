@@ -11,10 +11,21 @@ workspace "ABCD"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "ABCD/vendor/GLFW/include"
+
+group "Dependencies"
+	include "ABCD/vendor/GLFW"
+group ""
+
+include "ABCD/vendor/GLFW"
+
 project "ABCD"
 	location "ABCD"
 	kind "SharedLib"
 	language "C++"
+  staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -31,18 +42,24 @@ project "ABCD"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+  links 
+	{ 
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
 		{
 			"AB_PLATFORM_WINDOWS",
-			"AB_BUILD_DLL"
+			"AB_BUILD_DLL",
 		}
 
 		postbuildcommands
@@ -52,20 +69,24 @@ project "ABCD"
 
 	filter "configurations:Debug"
 		defines "AB_DEBUG"
+    runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "AB_RELEASE"
+    runtime "Release"
 		optimize "On"
 
 	filter "configurations:Distribution"
 		defines "AB_DIST"
+    runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+  staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -89,7 +110,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -99,12 +119,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "AB_DEBUG"
+    runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "AB_RELEASE"
+    runtime "Release"
 		optimize "On"
 
 	filter "configurations:Distribution"
 		defines "AB_DIST"
+    runtime "Release"
 		optimize "On"

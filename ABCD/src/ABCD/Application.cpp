@@ -4,10 +4,13 @@
 #include "ABCD/Events/ApplicationEvent.h"
 #include "ABCD/Log.h"
 
+#include <GLFW/glfw3.h>
+
 namespace abcd
 {
     Application::Application()
     {
+        mWindow = std::unique_ptr<IWindow>(IWindow::Create());
     }
 
     Application::~Application()
@@ -16,16 +19,11 @@ namespace abcd
 
     void Application::Run()
     {
-        WindowResizeEvent e(1280, 720);
-        if (e.IsInCategory(EventCategoryApplication))
+        while (mbRunning)
         {
-            AB_TRACE(e);
+            glClearColor(1, 0, 1, 1);
+            glClear(GL_COLOR_BUFFER_BIT);
+            mWindow->OnUpdate();
         }
-        if (e.IsInCategory(EventCategoryInput))
-        {
-            AB_TRACE(e);
-        }
-
-        while (true);
     }
 }

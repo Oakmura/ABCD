@@ -7,6 +7,12 @@
     <Filter Include="ABCD\Events">
       <UniqueIdentifier>{D30231DC-3FB8-A9D1-C8AC-A3A83461A0D5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ABCD.h" />
@@ -31,8 +37,14 @@
     <ClInclude Include="src\ABCD\Events\MouseEvent.h">
       <Filter>ABCD\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\IWindow.h">
+      <Filter>ABCD</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Log.h">
       <Filter>ABCD</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\abpch.h" />
   </ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\ABCD\Log.cpp">
       <Filter>ABCD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\abpch.cpp" />
   </ItemGroup>
