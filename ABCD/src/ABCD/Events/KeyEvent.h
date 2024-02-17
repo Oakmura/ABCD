@@ -9,7 +9,7 @@ namespace abcd {
     public:
         inline int GetKeyCode() const { return mKeyCode; }
 
-        EVENT_CLASS_CATEGORY(EVENT_CATEGORY_KEYBOARD| EVENT_CATEGORY_INPUT)
+        EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
     protected:
         KeyEvent(int keycode)
             : mKeyCode(keycode) {}
@@ -32,7 +32,7 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(KEY_PRESSED)
+        EVENT_CLASS_TYPE(KeyPressed)
     private:
         int mRepeatCount;
     };
@@ -50,6 +50,6 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(KEY_RELEASED)
+        EVENT_CLASS_TYPE(KeyReleased)
     };
 }

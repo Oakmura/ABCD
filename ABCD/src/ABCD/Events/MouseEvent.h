@@ -22,8 +22,8 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(MOUSE_MOVED)
-            EVENT_CLASS_CATEGORY(EVENT_CATEGORY_MOUSE | EVENT_CATEGORY_INPUT)
+        EVENT_CLASS_TYPE(MouseMoved)
+            EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     private:
         float mMouseX, mMouseY;
     };
@@ -44,8 +44,8 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(MOUSE_SCROLLED)
-            EVENT_CLASS_CATEGORY(EVENT_CATEGORY_MOSUE | EVENT_CATEGORY_INPUT)
+        EVENT_CLASS_TYPE(MouseScrolled)
+            EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     private:
         float mXOffset, mYOffset;
     };
@@ -55,7 +55,7 @@ namespace abcd {
     public:
         inline int GetMouseButton() const { return mButton; }
 
-        EVENT_CLASS_CATEGORY(EVENT_CATEGORY_MOUSE | EVENT_CATEGORY_INPUT)
+        EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     protected:
         MouseButtonEvent(int button)
             : mButton(button) {}
@@ -76,7 +76,7 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(MOUSE_BUTTON_PRESSED)
+        EVENT_CLASS_TYPE(MouseButtonPressed)
     };
 
     class AB_API MouseButtonReleasedEvent : public MouseButtonEvent
@@ -92,6 +92,6 @@ namespace abcd {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(MOUSE_BUTTON_RELEASED)
+        EVENT_CLASS_TYPE(MouseButtonPressed)
     };
 }
