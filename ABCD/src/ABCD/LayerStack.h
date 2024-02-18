@@ -3,8 +3,6 @@
 #include "ABCD/Core.h"
 #include "Layer.h"
 
-#include <vector>
-
 namespace abcd
 {
     class AB_API LayerStack

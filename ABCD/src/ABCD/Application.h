@@ -21,6 +21,10 @@ namespace abcd
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
 
+        inline IWindow& GetWindow() { return *mWindow; }
+
+        inline static Application& Get() { return *sInstance; }
+
     private:
         bool onWindowClose(WindowCloseEvent& e);
 
@@ -29,6 +33,9 @@ namespace abcd
         LayerStack mLayerStack;
 
         bool mbRunning = true;
+
+    private:
+        static Application* sInstance;
     };
 
     Application* CreateApplication();
