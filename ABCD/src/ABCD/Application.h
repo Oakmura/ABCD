@@ -7,6 +7,8 @@
 #include "ABCD/Events/Event.h"
 #include "ABCD/Events/ApplicationEvent.h"
 
+#include "ABCD/ImGui/ImGuiLayer.h"
+
 namespace abcd
 {
     class AB_API Application
@@ -30,6 +32,7 @@ namespace abcd
 
     private:
         std::unique_ptr<IWindow> mWindow;
+        ImGuiLayer* mImGuiLayer;
         LayerStack mLayerStack;
 
         bool mbRunning = true;

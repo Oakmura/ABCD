@@ -168,7 +168,6 @@
     <ClInclude Include="src\ABCD\LayerStack.h" />
     <ClInclude Include="src\ABCD\Log.h" />
     <ClInclude Include="src\ABCD\MouseButtonCodes.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\abpch.h" />
@@ -591,11 +590,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Application.cpp" />
+    <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\ABCD\Layer.cpp" />
     <ClCompile Include="src\ABCD\LayerStack.cpp" />
     <ClCompile Include="src\ABCD\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\abpch.cpp">

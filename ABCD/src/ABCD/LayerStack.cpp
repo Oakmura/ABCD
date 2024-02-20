@@ -5,7 +5,6 @@ namespace abcd
 {
     LayerStack::LayerStack()
     {
-        mLayerInsert = mLayers.begin();
     }
 
     LayerStack::~LayerStack()
@@ -18,7 +17,8 @@ namespace abcd
 
     void LayerStack::PushLayer(Layer* layer)
     {
-        mLayerInsert = mLayers.emplace(mLayerInsert, layer);
+        mLayers.emplace(mLayers.begin() + m_LayerInsertIndex, layer);
+        m_LayerInsertIndex++;
     }
 
     void LayerStack::PushOverlay(Layer* overlay)
@@ -32,7 +32,7 @@ namespace abcd
         if (it != mLayers.end())
         {
             mLayers.erase(it);
-            mLayerInsert--;
+            m_LayerInsertIndex--;
         }
     }
 
