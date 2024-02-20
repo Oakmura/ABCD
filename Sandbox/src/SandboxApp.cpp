@@ -15,7 +15,7 @@ public:
 
     void OnEvent(abcd::Event& event) override
     {
-        AB_TRACE("{0}", event);
+        AB_TRACE("ExampleLayer::OnEvent {0}", event);
     }
 };
 

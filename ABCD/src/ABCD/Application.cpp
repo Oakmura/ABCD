@@ -66,7 +66,9 @@ namespace abcd
             glClear(GL_COLOR_BUFFER_BIT);
 
             for (Layer* layer : mLayerStack)
+            {
                 layer->OnUpdate();
+            }
 
             mWindow->OnUpdate();
         }
