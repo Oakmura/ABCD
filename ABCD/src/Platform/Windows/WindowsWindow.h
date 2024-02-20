@@ -20,6 +20,8 @@ namespace abcd
         inline void SetEventCallback(const EventCallbackFn& callback) override { mData.EventCallback = callback; }
         void SetVSync(bool enabled) override;
         bool IsVSync() const override;
+
+        inline virtual void* GetNativeWindow() const { return mWindow; }
     private:
         virtual void Init(const WindowProps& props);
         virtual void Shutdown();
