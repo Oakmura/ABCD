@@ -19,11 +19,14 @@ namespace abcd
     {
         mLayers.emplace(mLayers.begin() + m_LayerInsertIndex, layer);
         m_LayerInsertIndex++;
+
+        layer->OnAttach();
     }
 
     void LayerStack::PushOverlay(Layer* overlay)
     {
         mLayers.emplace_back(overlay);
+        overlay->OnAttach();
     }
 
     void LayerStack::PopLayer(Layer* layer)
@@ -33,6 +36,8 @@ namespace abcd
         {
             mLayers.erase(it);
             m_LayerInsertIndex--;
+
+            layer->OnDetach();
         }
     }
 
@@ -42,6 +47,7 @@ namespace abcd
         if (it != mLayers.end())
         {
             mLayers.erase(it);
+            overlay->OnDetach();
         }
     }
 }

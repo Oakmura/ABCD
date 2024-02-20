@@ -30,9 +30,10 @@ include "ABCD/vendor/imgui"
 
 project "ABCD"
 	location "ABCD"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-  staticruntime "off"
+  staticruntime "on"
+  cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -67,7 +68,6 @@ project "ABCD"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
