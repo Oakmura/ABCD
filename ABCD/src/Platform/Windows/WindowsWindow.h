@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ABCD/IWindow.h"
+#include "ABCD/Renderer/IGraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -27,6 +28,7 @@ namespace abcd
         virtual void Shutdown();
     private:
         GLFWwindow* mWindow;
+        IGraphicsContext* mContext;
 
         struct WindowData
         {

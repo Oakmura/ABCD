@@ -13,8 +13,14 @@
     <Filter Include="src\ABCD\ImGui">
       <UniqueIdentifier>{F0C63336-DC94-273C-C528-9862B19503A1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ABCD\Renderer">
+      <UniqueIdentifier>{AC87AD1A-189E-ABB0-6115-37D2CD6A7C38}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -89,6 +95,12 @@
     </ClInclude>
     <ClInclude Include="src\ABCD\MouseButtonCodes.h">
       <Filter>src\ABCD</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1366,6 +1378,9 @@
     </ClCompile>
     <ClCompile Include="src\ABCD\Log.cpp">
       <Filter>src\ABCD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
