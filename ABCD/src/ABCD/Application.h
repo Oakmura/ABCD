@@ -8,7 +8,9 @@
 #include "ABCD/Events/ApplicationEvent.h"
 
 #include "ABCD/ImGui/ImGuiLayer.h"
+
 #include "ABCD/Renderer/Shader.h"
+#include "ABCD/Renderer/IBuffer.h"
 
 namespace abcd
 {
@@ -35,12 +37,13 @@ namespace abcd
         std::unique_ptr<IWindow> mWindow;
         ImGuiLayer* mImGuiLayer;
         LayerStack mLayerStack;
+
         std::unique_ptr<Shader> mShader;
+        std::unique_ptr<IVertexBuffer> mVertexBuffer;
+        std::unique_ptr<IIndexBuffer> mIndexBuffer;
 
         bool mbRunning = true;
         unsigned int mVertexArray;
-        unsigned int mVertexBuffer;
-        unsigned int mIndexBuffer;
 
     private:
         static Application* sInstance;
