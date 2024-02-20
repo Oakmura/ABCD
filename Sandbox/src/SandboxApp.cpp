@@ -18,7 +18,7 @@ public:
 
     void OnEvent(abcd::Event& event) override
     {
-        if (event.GetEventType() == abcd::EventType::KeyPressed)
+        if (event.GetEventType() == abcd::eEventType::KeyPressed)
         {
             abcd::KeyPressedEvent& e = (abcd::KeyPressedEvent&)event;
             if (e.GetKeyCode() == AB_KEY_TAB)
