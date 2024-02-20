@@ -36,6 +36,9 @@ namespace abcd
         LayerStack mLayerStack;
 
         bool mbRunning = true;
+        unsigned int mVertexArray;
+        unsigned int mVertexBuffer;
+        unsigned int mIndexBuffer;
 
     private:
         static Application* sInstance;

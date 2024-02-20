@@ -18,6 +18,11 @@ namespace abcd
         glfwMakeContextCurrent(mWindowHandle);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         AB_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+        AB_CORE_INFO("OpenGL Info:");
+        AB_CORE_INFO("  Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+        AB_CORE_INFO("  Renderer: {0}", (const char*)glGetString(GL_RENDERER));
+        AB_CORE_INFO("  Version: {0}", (const char*)glGetString(GL_VERSION));
     }
 
     void OpenGLContext::SwapBuffers()
