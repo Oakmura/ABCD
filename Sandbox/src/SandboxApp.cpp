@@ -10,12 +10,23 @@ public:
 
     void OnUpdate() override
     {
-        AB_INFO("ExampleLayer::Update");
+        if (abcd::Input::IsKeyPressed(AB_KEY_TAB))
+        {
+            AB_TRACE("Tab key is pressed (poll)!");
+        }
     }
 
     void OnEvent(abcd::Event& event) override
     {
-        AB_TRACE("ExampleLayer::OnEvent {0}", event);
+        if (event.GetEventType() == abcd::EventType::KeyPressed)
+        {
+            abcd::KeyPressedEvent& e = (abcd::KeyPressedEvent&)event;
+            if (e.GetKeyCode() == AB_KEY_TAB)
+            {
+                AB_TRACE("Tab key is pressed (event)!");
+            }
+            AB_TRACE("{0}", (char)e.GetKeyCode());
+        }
     }
 };
 
