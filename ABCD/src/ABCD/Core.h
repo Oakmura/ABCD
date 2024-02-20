@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef AB_PLATFORM_WINDOWS
+#if AB_DYNAMIC_LINK
     #ifdef AB_BUILD_DLL
         #define AB_API __declspec(dllexport)
     #else
         #define AB_API __declspec(dllimport)
     #endif
+#else
+    #define AB_API
+#endif
 #else
     #error ABCD only supports Windows!
 #endif

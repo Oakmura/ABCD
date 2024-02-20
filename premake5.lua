@@ -32,8 +32,8 @@ project "ABCD"
 	location "ABCD"
 	kind "StaticLib"
 	language "C++"
-  staticruntime "on"
   cppdialect "C++17"
+  staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -78,31 +78,27 @@ project "ABCD"
       "_CRT_SECURE_NO_WARNINGS"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "AB_DEBUG"
     runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "AB_RELEASE"
     runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Distribution"
 		defines "AB_DIST"
     runtime "Release"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-  staticruntime "off"
+	cppdialect "C++17"
+  staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -127,7 +123,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -138,14 +133,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "AB_DEBUG"
     runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "AB_RELEASE"
     runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Distribution"
 		defines "AB_DIST"
     runtime "Release"
-		optimize "On"
+		optimize "on"
