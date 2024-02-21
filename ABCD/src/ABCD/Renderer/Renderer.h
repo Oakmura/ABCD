@@ -1,18 +1,17 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace abcd 
 {
-    enum class RendererAPI
-    {
-        None = 0, OpenGL = 1
-    };
-
     class Renderer
     {
     public:
-        inline static RendererAPI GetAPI() { return sRendererAPI; }
+        static void BeginScene();
+        static void EndScene();
 
-    private:
-        static RendererAPI sRendererAPI;
+        static void Submit(const std::shared_ptr<IVertexArray>& vertexArray);
+
+        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
     };
 }
