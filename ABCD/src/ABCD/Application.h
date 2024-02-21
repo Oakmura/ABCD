@@ -7,17 +7,13 @@
 #include "ABCD/Events/Event.h"
 #include "ABCD/Events/ApplicationEvent.h"
 
+#include "ABCD/Core/Timestep.h"
+
 #include "ABCD/ImGui/ImGuiLayer.h"
-
-#include "ABCD/Renderer/Shader.h"
-#include "ABCD/Renderer/IBuffer.h"
-#include "ABCD/Renderer/IVertexArray.h"
-
-#include "ABCD/Renderer/OrthographicCamera.h"
 
 namespace abcd
 {
-    class AB_API Application
+    class Application
     {
     public:
         Application();
@@ -41,15 +37,8 @@ namespace abcd
         ImGuiLayer* mImGuiLayer;
         LayerStack mLayerStack;
 
-        std::shared_ptr<Shader> mShader;
-        std::shared_ptr<IVertexArray> mVertexArray;
-
-        std::shared_ptr<Shader> mBlueShader;
-        std::shared_ptr<IVertexArray> mSquareVA;
-
-        OrthographicCamera mCamera;
-
         bool mbRunning = true;
+        float mLastFrameTime = 0.0f;
 
     private:
         static Application* sInstance;

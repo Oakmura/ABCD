@@ -1,10 +1,11 @@
 #pragma once
 
 #include "ABCD/Core.h"
+#include "ABCD/Core/Timestep.h"
 #include "ABCD/Events/Event.h"
 
-namespace abcd {
-
+namespace abcd 
+{
     class AB_API Layer
     {
     public:
@@ -13,7 +14,7 @@ namespace abcd {
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestep ts) {}
         virtual void OnImGuiRender() {}
         virtual void OnEvent(Event& event) {}
 
