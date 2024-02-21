@@ -17,8 +17,8 @@ namespace abcd
 
     void LayerStack::PushLayer(Layer* layer)
     {
-        mLayers.emplace(mLayers.begin() + m_LayerInsertIndex, layer);
-        m_LayerInsertIndex++;
+        mLayers.emplace(mLayers.begin() + mLayerInsertIndex, layer);
+        mLayerInsertIndex++;
 
         layer->OnAttach();
     }
@@ -31,18 +31,18 @@ namespace abcd
 
     void LayerStack::PopLayer(Layer* layer)
     {
-        auto it = std::find(mLayers.begin(), mLayers.end(), layer);
+        auto it = std::find(mLayers.begin(), mLayers.begin() + mLayerInsertIndex, layer);
         if (it != mLayers.end())
         {
             layer->OnDetach();
             mLayers.erase(it);
-            m_LayerInsertIndex--;
+            mLayerInsertIndex--;
         }
     }
 
     void LayerStack::PopOverlay(Layer* overlay)
     {
-        auto it = std::find(mLayers.begin(), mLayers.end(), overlay);
+        auto it = std::find(mLayers.begin() + mLayerInsertIndex, mLayers.end(), overlay);
         if (it != mLayers.end())
         {
             overlay->OnDetach();

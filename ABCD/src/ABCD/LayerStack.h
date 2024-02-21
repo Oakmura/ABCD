@@ -21,6 +21,6 @@ namespace abcd
 
     private:
         std::vector<Layer*> mLayers;
-        unsigned int m_LayerInsertIndex = 0;
+        unsigned int mLayerInsertIndex = 0;
     };
 }
