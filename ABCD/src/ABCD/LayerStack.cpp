@@ -34,10 +34,9 @@ namespace abcd
         auto it = std::find(mLayers.begin(), mLayers.end(), layer);
         if (it != mLayers.end())
         {
+            layer->OnDetach();
             mLayers.erase(it);
             m_LayerInsertIndex--;
-
-            layer->OnDetach();
         }
     }
 
@@ -46,8 +45,8 @@ namespace abcd
         auto it = std::find(mLayers.begin(), mLayers.end(), overlay);
         if (it != mLayers.end())
         {
-            mLayers.erase(it);
             overlay->OnDetach();
+            mLayers.erase(it);
         }
     }
 }
