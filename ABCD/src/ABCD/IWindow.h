@@ -27,7 +27,7 @@ namespace abcd
     public:
         using EventCallbackFn = std::function<void(Event&)>;
 
-        virtual ~IWindow() {}
+        virtual ~IWindow() = default;
 
         virtual void OnUpdate() = 0;
 

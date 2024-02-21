@@ -67,10 +67,6 @@ namespace abcd
         mShader.reset(new Shader(vertexSrc, fragmentSrc));
     }
 
-    Application::~Application()
-    {
-    }
-
     void Application::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);

@@ -5,7 +5,7 @@ namespace abcd
     class IVertexBuffer
     {
     public:
-        virtual ~IVertexBuffer() {}
+        virtual ~IVertexBuffer() = default;
 
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
@@ -16,7 +16,7 @@ namespace abcd
     class IIndexBuffer
     {
     public:
-        virtual ~IIndexBuffer() {}
+        virtual ~IIndexBuffer() = default;
 
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
