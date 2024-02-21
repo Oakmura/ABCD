@@ -143,6 +143,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\ABCD\Renderer\IVertexArray.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Application.h" />
@@ -586,6 +588,8 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\IVertexArray.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
     <ClCompile Include="src\ABCD\Application.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />

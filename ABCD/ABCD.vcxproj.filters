@@ -1363,6 +1363,8 @@
     <ClInclude Include="src\ABCD\Renderer\Renderer.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\ABCD\Renderer\IVertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Application.cpp">
@@ -1399,5 +1401,7 @@
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\IVertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>

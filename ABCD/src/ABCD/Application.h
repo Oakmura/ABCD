@@ -11,6 +11,7 @@
 
 #include "ABCD/Renderer/Shader.h"
 #include "ABCD/Renderer/IBuffer.h"
+#include "ABCD/Renderer/IVertexArray.h"
 
 namespace abcd
 {
@@ -38,12 +39,13 @@ namespace abcd
         ImGuiLayer* mImGuiLayer;
         LayerStack mLayerStack;
 
-        std::unique_ptr<Shader> mShader;
-        std::unique_ptr<IVertexBuffer> mVertexBuffer;
-        std::unique_ptr<IIndexBuffer> mIndexBuffer;
+        std::shared_ptr<Shader> mShader;
+        std::shared_ptr<IVertexArray> mVertexArray;
+
+        std::shared_ptr<Shader> mBlueShader;
+        std::shared_ptr<IVertexArray> mSquareVA;
 
         bool mbRunning = true;
-        unsigned int mVertexArray;
 
     private:
         static Application* sInstance;
