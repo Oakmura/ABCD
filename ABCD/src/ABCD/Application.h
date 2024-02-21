@@ -13,6 +13,8 @@
 #include "ABCD/Renderer/IBuffer.h"
 #include "ABCD/Renderer/IVertexArray.h"
 
+#include "ABCD/Renderer/OrthographicCamera.h"
+
 namespace abcd
 {
     class AB_API Application
@@ -44,6 +46,8 @@ namespace abcd
 
         std::shared_ptr<Shader> mBlueShader;
         std::shared_ptr<IVertexArray> mSquareVA;
+
+        OrthographicCamera mCamera;
 
         bool mbRunning = true;
 

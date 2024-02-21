@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ABCD\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\ABCD\Renderer\RendererAPI.h" />
     <ClInclude Include="src\ABCD\Renderer\RenderCommand.h" />
@@ -591,6 +592,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ABCD\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\ABCD\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\ABCD\Renderer\RenderCommand.cpp" />

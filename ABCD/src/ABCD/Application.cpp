@@ -14,6 +14,7 @@ namespace abcd
     Application* Application::sInstance = nullptr;
 
     Application::Application()
+        : mCamera(-1.6f, 1.6f, -0.9f, 0.9f)
     {
         AB_CORE_ASSERT(!sInstance, "Application already exists!");
         sInstance = this;
@@ -72,6 +73,8 @@ namespace abcd
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec3 v_Position;
 			out vec4 v_Color;
 
@@ -79,7 +82,8 @@ namespace abcd
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);	
+
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -104,11 +108,15 @@ namespace abcd
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
+
+			uniform mat4 u_ViewProjection;
+
 			out vec3 v_Position;
+
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -165,13 +173,13 @@ namespace abcd
             RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
             RenderCommand::Clear();
 
-            Renderer::BeginScene();
-            {
-                mBlueShader->Bind();
-                Renderer::Submit(mSquareVA);
+            mCamera.SetPosition({ 0.5f, 0.5f, 0.0f });
+            mCamera.SetRotation(45.0f);
 
-                mShader->Bind();
-                Renderer::Submit(mVertexArray);
+            Renderer::BeginScene(mCamera);
+            {
+                Renderer::Submit(mBlueShader, mSquareVA);
+                Renderer::Submit(mShader, mVertexArray);
             }
             Renderer::EndScene();
 
