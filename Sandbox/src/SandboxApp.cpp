@@ -1,8 +1,11 @@
 #include "ABCD.h"
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public abcd::Layer
 {
@@ -88,9 +91,9 @@ public:
 			}
 		)";
 
-        mShader.reset(new abcd::Shader(vertexSrc, fragmentSrc));
+        mShader.reset(abcd::IShader::Create(vertexSrc, fragmentSrc));
 
-        std::string blueShaderVertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -107,18 +110,22 @@ public:
 			}
 		)";
 
-        std::string blueShaderFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
 			in vec3 v_Position;
+
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-        mBlueShader.reset(new abcd::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+        mFlatColorShader.reset(abcd::IShader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
     }
 
     void OnUpdate(abcd::Timestep ts) override
@@ -161,13 +168,17 @@ public:
         {
             glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+            std::dynamic_pointer_cast<abcd::OpenGLShader>(mFlatColorShader)->Bind();
+            std::dynamic_pointer_cast<abcd::OpenGLShader>(mFlatColorShader)->UploadUniformFloat3("u_Color", mSquareColor);
+
             for (int y = 0; y < 20; y++)
             {
                 for (int x = 0; x < 20; x++)
                 {
                     glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
                     glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-                    abcd::Renderer::Submit(mBlueShader, mSquareVA, transform);
+
+                    abcd::Renderer::Submit(mFlatColorShader, mSquareVA, transform);
                 }
             }
 
@@ -179,6 +190,9 @@ public:
 
     virtual void OnImGuiRender() override
     {
+        ImGui::Begin("Settings");
+        ImGui::ColorEdit3("Square Color", glm::value_ptr(mSquareColor));
+        ImGui::End();
     }
 
     void OnEvent(abcd::Event& event) override
@@ -186,10 +200,10 @@ public:
     }
 
 private:
-    std::shared_ptr<abcd::Shader> mShader;
+    std::shared_ptr<abcd::IShader> mShader;
     std::shared_ptr<abcd::IVertexArray> mVertexArray;
 
-    std::shared_ptr<abcd::Shader> mBlueShader;
+    std::shared_ptr<abcd::IShader> mFlatColorShader;
     std::shared_ptr<abcd::IVertexArray> mSquareVA;
 
     abcd::OrthographicCamera mCamera;
@@ -198,6 +212,8 @@ private:
 
     float mCameraRotation = 0.0f;
     float mCameraRotationSpeed = 180.0f;
+
+    glm::vec3 mSquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public abcd::Application

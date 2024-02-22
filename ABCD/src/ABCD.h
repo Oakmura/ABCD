@@ -17,7 +17,7 @@
 #include "ABCD/Renderer/RenderCommand.h"
 
 #include "ABCD/Renderer/IBuffer.h"
-#include "ABCD/Renderer/Shader.h"
+#include "ABCD/Renderer/IShader.h"
 #include "ABCD/Renderer/IVertexArray.h"
 
 #include "ABCD/Renderer/OrthographicCamera.h"
