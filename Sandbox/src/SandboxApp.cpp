@@ -159,6 +159,7 @@ public:
         mTextureShader.reset(abcd::IShader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
         mTexture = abcd::Texture2D::Create("assets/textures/Checkerboard.png");
+        mChernoLogoTexture = abcd::Texture2D::Create("assets/textures/ChernoLogo.png");
 
         std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->Bind();
         std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->UploadUniformInt("u_Texture", 0);
@@ -220,6 +221,8 @@ public:
 
             mTexture->Bind();
             abcd::Renderer::Submit(mTextureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+            mChernoLogoTexture->Bind();
+            abcd::Renderer::Submit(mTextureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
             // Triangle
             // abcd::Renderer::Submit(m_Shader, m_VertexArray);
@@ -246,7 +249,7 @@ private:
     abcd::Ref<abcd::IShader> mFlatColorShader, mTextureShader;
     abcd::Ref<abcd::IVertexArray> mSquareVA;
 
-    abcd::Ref<abcd::Texture2D> mTexture;
+    abcd::Ref<abcd::Texture2D> mTexture, mChernoLogoTexture;
 
     abcd::OrthographicCamera mCamera;
     glm::vec3 mCameraPosition;

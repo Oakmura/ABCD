@@ -23,6 +23,8 @@ namespace abcd
         mWindow = std::unique_ptr<IWindow>(IWindow::Create());
         mWindow->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+        Renderer::Init();
+
         mImGuiLayer = new ImGuiLayer();
         PushOverlay(mImGuiLayer);
     }
