@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "ABCD/vendor/GLFW/include"
 IncludeDir["Glad"] = "ABCD/vendor/Glad/include"
 IncludeDir["ImGui"] = "ABCD/vendor/imgui"
 IncludeDir["glm"] = "ABCD/vendor/glm"
+IncludeDir["stb_image"] = "ABCD/vendor/stb_image"
 
 group "Dependencies"
 	include "ABCD/vendor/GLFW"
@@ -45,6 +46,8 @@ project "ABCD"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -56,7 +59,8 @@ project "ABCD"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
   links 

@@ -21,7 +21,7 @@ public:
              0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
-        std::shared_ptr<abcd::IVertexBuffer> vertexBuffer;
+        abcd::Ref<abcd::IVertexBuffer> vertexBuffer;
         vertexBuffer.reset(abcd::IVertexBuffer::Create(vertices, sizeof(vertices)));
         abcd::BufferLayout layout = {
             { abcd::ShaderDataType::Float3, "a_Position" },
@@ -31,27 +31,28 @@ public:
         mVertexArray->AddVertexBuffer(vertexBuffer);
 
         uint32_t indices[3] = { 0, 1, 2 };
-        std::shared_ptr<abcd::IIndexBuffer> indexBuffer;
+        abcd::Ref<abcd::IIndexBuffer> indexBuffer;
         indexBuffer.reset(abcd::IIndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
         mVertexArray->SetIndexBuffer(indexBuffer);
 
         mSquareVA.reset(abcd::IVertexArray::Create());
-        float squareVertices[3 * 4] = {
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f,
-             0.5f,  0.5f, 0.0f,
-            -0.5f,  0.5f, 0.0f
+        float squareVertices[5 * 4] = {
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
-        std::shared_ptr<abcd::IVertexBuffer> squareVB;
+        abcd::Ref<abcd::IVertexBuffer> squareVB;
         squareVB.reset(abcd::IVertexBuffer::Create(squareVertices, sizeof(squareVertices)));
         squareVB->SetLayout({
-            { abcd::ShaderDataType::Float3, "a_Position" }
+            { abcd::ShaderDataType::Float3, "a_Position" },
+            { abcd::ShaderDataType::Float2, "a_TexCoord" }
             });
         mSquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-        std::shared_ptr<abcd::IIndexBuffer> squareIB;
+        abcd::Ref<abcd::IIndexBuffer> squareIB;
         squareIB.reset(abcd::IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
         mSquareVA->SetIndexBuffer(squareIB);
 
@@ -126,6 +127,41 @@ public:
 		)";
 
         mFlatColorShader.reset(abcd::IShader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+        std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+			out vec2 v_TexCoord;
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+        std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+        mTextureShader.reset(abcd::IShader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+        mTexture = abcd::Texture2D::Create("assets/textures/Checkerboard.png");
+
+        std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->Bind();
+        std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->UploadUniformInt("u_Texture", 0);
     }
 
     void OnUpdate(abcd::Timestep ts) override
@@ -182,7 +218,11 @@ public:
                 }
             }
 
-            abcd::Renderer::Submit(mShader, mVertexArray);
+            mTexture->Bind();
+            abcd::Renderer::Submit(mTextureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+            // Triangle
+            // abcd::Renderer::Submit(m_Shader, m_VertexArray);
         }
 
         abcd::Renderer::EndScene();
@@ -200,11 +240,13 @@ public:
     }
 
 private:
-    std::shared_ptr<abcd::IShader> mShader;
-    std::shared_ptr<abcd::IVertexArray> mVertexArray;
+    abcd::Ref<abcd::IShader> mShader;
+    abcd::Ref<abcd::IVertexArray> mVertexArray;
 
-    std::shared_ptr<abcd::IShader> mFlatColorShader;
-    std::shared_ptr<abcd::IVertexArray> mSquareVA;
+    abcd::Ref<abcd::IShader> mFlatColorShader, mTextureShader;
+    abcd::Ref<abcd::IVertexArray> mSquareVA;
+
+    abcd::Ref<abcd::Texture2D> mTexture;
 
     abcd::OrthographicCamera mCamera;
     glm::vec3 mCameraPosition;
