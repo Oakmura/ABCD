@@ -20,8 +20,9 @@ namespace abcd
         virtual const std::shared_ptr<IIndexBuffer>& GetIndexBuffer() const { return mIndexBuffer; }
     private:
         uint32_t mRendererID;
+        uint32_t mVertexBufferIndex = 0;
+
         std::vector<std::shared_ptr<IVertexBuffer>> mVertexBuffers;
         std::shared_ptr<IIndexBuffer> mIndexBuffer;
     };
-
 }

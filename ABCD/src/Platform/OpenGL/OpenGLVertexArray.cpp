@@ -57,14 +57,14 @@ namespace abcd
         const auto& layout = vertexBuffer->GetLayout();
         for (const auto& element : layout)
         {
-            glEnableVertexAttribArray(index);
-            glVertexAttribPointer(index,
+            glEnableVertexAttribArray(mVertexBufferIndex);
+            glVertexAttribPointer(mVertexBufferIndex,
                 element.GetComponentCount(),
                 ShaderDataTypeToOpenGLBaseType(element.Type),
                 element.Normalized ? GL_TRUE : GL_FALSE,
                 layout.GetStride(),
                 (const void*)(intptr_t)element.Offset);
-            index++;
+            mVertexBufferIndex++;
         }
 
         mVertexBuffers.push_back(vertexBuffer);
