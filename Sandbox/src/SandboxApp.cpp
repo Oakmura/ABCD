@@ -92,7 +92,7 @@ public:
 			}
 		)";
 
-        mShader.reset(abcd::IShader::Create(vertexSrc, fragmentSrc));
+        mShader = abcd::IShader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -126,14 +126,14 @@ public:
 			}
 		)";
 
-        mFlatColorShader.reset(abcd::IShader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-        mTextureShader.reset(abcd::IShader::Create("assets/shaders/Texture.glsl"));
+        mFlatColorShader = abcd::IShader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+        auto textureShader = mShaderLibrary.Load("assets/shaders/Texture.glsl");
 
         mTexture = abcd::Texture2D::Create("assets/textures/Checkerboard.png");
         mChernoLogoTexture = abcd::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-        std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->Bind();
-        std::dynamic_pointer_cast<abcd::OpenGLShader>(mTextureShader)->UploadUniformInt("u_Texture", 0);
+        std::dynamic_pointer_cast<abcd::OpenGLShader>(textureShader)->Bind();
+        std::dynamic_pointer_cast<abcd::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
     }
 
     void OnUpdate(abcd::Timestep ts) override
@@ -190,10 +190,12 @@ public:
                 }
             }
 
+            auto textureShader = mShaderLibrary.Get("Texture");
+
             mTexture->Bind();
-            abcd::Renderer::Submit(mTextureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+            abcd::Renderer::Submit(textureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
             mChernoLogoTexture->Bind();
-            abcd::Renderer::Submit(mTextureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+            abcd::Renderer::Submit(textureShader, mSquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
             // Triangle
             // abcd::Renderer::Submit(m_Shader, m_VertexArray);
@@ -214,10 +216,11 @@ public:
     }
 
 private:
+    abcd::ShaderLibrary mShaderLibrary;
     abcd::Ref<abcd::IShader> mShader;
     abcd::Ref<abcd::IVertexArray> mVertexArray;
-
-    abcd::Ref<abcd::IShader> mFlatColorShader, mTextureShader;
+        
+    abcd::Ref<abcd::IShader> mFlatColorShader;
     abcd::Ref<abcd::IVertexArray> mSquareVA;
 
     abcd::Ref<abcd::Texture2D> mTexture, mChernoLogoTexture;
