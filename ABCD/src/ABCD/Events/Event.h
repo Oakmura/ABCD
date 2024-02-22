@@ -48,20 +48,19 @@ namespace abcd
 
     class EventDispatcher
     {
-        template<typename T>
-        using EventFn = std::function<bool(T&)>;
     public:
         EventDispatcher(Event& event)
             : mEvent(event)
         {
         }
 
-        template<typename T>
-        bool Dispatch(EventFn<T> func)
+        // F will be deduced by the compiler
+        template<typename T, typename F>
+        bool Dispatch(const F& func)
         {
             if (mEvent.GetEventType() == T::GetStaticType())
             {
-                mEvent.mbHandled = func(*(T*)&mEvent);
+                mEvent.mbHandled = func(static_cast<T&>(mEvent));
                 return true;
             }
             return false;
