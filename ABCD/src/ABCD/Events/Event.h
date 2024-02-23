@@ -24,7 +24,7 @@ namespace abcd
         EventCategoryMouseButton = BIT(4)
     };
 
-#define EVENT_CLASS_TYPE(type) static eEventType GetStaticType() { return eEventType::##type; }\
+#define EVENT_CLASS_TYPE(type) static eEventType GetStaticType() { return eEventType::type; }\
                             virtual eEventType GetEventType() const override { return GetStaticType(); }\
                             virtual const char* GetName() const override { return #type; }
 
