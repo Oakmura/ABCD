@@ -15,6 +15,7 @@
 
 // ---Renderer------------------------
 #include "ABCD/Renderer/Renderer.h"
+#include "ABCD/Renderer/Renderer2D.h"
 #include "ABCD/Renderer/RenderCommand.h"
 
 #include "ABCD/Renderer/IBuffer.h"
