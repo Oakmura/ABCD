@@ -11,7 +11,7 @@ namespace abcd
     class OrthographicCameraController
     {
     public:
-        OrthographicCameraController(float aspectRatio, bool rotation = false);
+        OrthographicCameraController(float aspectRatio, bool rotation = true);
 
         void OnUpdate(Timestep ts);
         void OnEvent(Event& e);
@@ -32,7 +32,7 @@ namespace abcd
         bool mbRotation;
 
         glm::vec3 mCameraPosition = { 0.0f, 0.0f, 0.0f };
-        float mCameraRotation = 0.0f;
+        float mCameraRotationInDegree = 0.0f; // anti-clockwise direction
         float mCameraTranslationSpeed = 5.0f, mCameraRotationSpeed = 180.0f;
     };
 }
