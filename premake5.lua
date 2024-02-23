@@ -81,7 +81,6 @@ project "ABCD"
 
 		defines
 		{
-			"AB_PLATFORM_WINDOWS",
 			"AB_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
       "_CRT_SECURE_NO_WARNINGS"
@@ -132,12 +131,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"AB_PLATFORM_WINDOWS"
-		}
+		systemversion "latest" 
 
 	filter "configurations:Debug"
 		defines "AB_DEBUG"

@@ -105,13 +105,22 @@
     <ClInclude Include="src\ABCD\MouseButtonCodes.h">
       <Filter>src\ABCD</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\OrthographicCameraController.h">
+      <Filter>src\ABCD</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\IRendererAPI.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IShader.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\ITexture.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IVertexArray.h">
@@ -126,9 +135,6 @@
     <ClInclude Include="src\ABCD\Renderer\Renderer.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\IRendererAPI.h">
-      <Filter>src\ABCD\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -139,6 +145,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1404,9 +1413,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\ITexture.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
-    <ClInclude Include="src\ABCD\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Application.cpp">
@@ -1427,10 +1433,19 @@
     <ClCompile Include="src\ABCD\Log.cpp">
       <Filter>src\ABCD</Filter>
     </ClCompile>
+    <ClCompile Include="src\ABCD\OrthographicCameraController.cpp">
+      <Filter>src\ABCD</Filter>
+    </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IShader.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\ITexture.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IVertexArray.cpp">
@@ -1445,9 +1460,6 @@
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp">
-      <Filter>src\ABCD\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1458,6 +1470,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1475,8 +1490,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\ITexture.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
-    <ClCompile Include="src\ABCD\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>
