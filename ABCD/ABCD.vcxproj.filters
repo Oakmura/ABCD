@@ -58,16 +58,37 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Core\Application.h">
-      <Filter>src\ABCD</Filter>
+      <Filter>src\ABCD\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Core\Core.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\Timestep.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Core\EntryPoint.h">
-      <Filter>src\ABCD</Filter>
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\IWindow.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\Input.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\KeyCodes.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\Layer.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\LayerStack.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\Log.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\MouseButtonCodes.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Core\Timestep.h">
+      <Filter>src\ABCD\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h">
       <Filter>src\ABCD\Events</Filter>
@@ -81,32 +102,8 @@
     <ClInclude Include="src\ABCD\Events\MouseEvent.h">
       <Filter>src\ABCD\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Core\IWindow.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h">
       <Filter>src\ABCD\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\Input.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\KeyCodes.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\Layer.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\LayerStack.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\Log.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Core\MouseButtonCodes.h">
-      <Filter>src\ABCD</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\OrthographicCameraController.h">
-      <Filter>src\ABCD</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h">
       <Filter>src\ABCD\Renderer</Filter>
@@ -127,6 +124,9 @@
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\OrthographicCamera.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\OrthographicCameraController.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\RenderCommand.h">
@@ -1416,25 +1416,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
-      <Filter>src\ABCD</Filter>
+      <Filter>src\ABCD\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Core\Layer.cpp">
+      <Filter>src\ABCD\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Core\LayerStack.cpp">
+      <Filter>src\ABCD\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Core\Log.cpp">
+      <Filter>src\ABCD\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp">
       <Filter>src\ABCD\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp">
       <Filter>src\ABCD\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ABCD\Core\Layer.cpp">
-      <Filter>src\ABCD</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ABCD\Core\LayerStack.cpp">
-      <Filter>src\ABCD</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ABCD\Core\Log.cpp">
-      <Filter>src\ABCD</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\OrthographicCameraController.cpp">
-      <Filter>src\ABCD</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
@@ -1452,6 +1449,9 @@
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\OrthographicCamera.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\OrthographicCameraController.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\RenderCommand.cpp">
