@@ -11,7 +11,7 @@ class ExampleLayer : public abcd::Layer
 {
 public:
     ExampleLayer()
-        : Layer("Example"), mCamera(-1.6f, 1.6f, -0.9f, 0.9f), mCameraPosition(0.0f)
+        : Layer("Example"), mCameraController(1280.0f / 720.0f)
     {
         mVertexArray.reset(abcd::IVertexArray::Create());
 
@@ -138,41 +138,14 @@ public:
 
     void OnUpdate(abcd::Timestep ts) override
     {
-        if (abcd::Input::IsKeyPressed(AB_KEY_LEFT))
-        {
-            mCameraPosition.x -= mCameraMoveSpeed * ts;
-        }
-        else if (abcd::Input::IsKeyPressed(AB_KEY_RIGHT))
-        {
-            mCameraPosition.x += mCameraMoveSpeed * ts;
-        }
-        
-        if (abcd::Input::IsKeyPressed(AB_KEY_UP))
-        {
-            mCameraPosition.y += mCameraMoveSpeed * ts;
-        }
-        else if (abcd::Input::IsKeyPressed(AB_KEY_DOWN))
-        {
-            mCameraPosition.y -= mCameraMoveSpeed * ts;
-        }
+        // Update
+        mCameraController.OnUpdate(ts);
 
-        if (abcd::Input::IsKeyPressed(AB_KEY_A))
-        {
-            mCameraRotation += mCameraRotationSpeed * ts;
-        }
-
-        if (abcd::Input::IsKeyPressed(AB_KEY_D))
-        {
-            mCameraRotation -= mCameraRotationSpeed * ts;
-        }
-
+        // Render
         abcd::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
         abcd::RenderCommand::Clear();
 
-        mCamera.SetPosition(mCameraPosition);
-        mCamera.SetRotation(mCameraRotation);
-
-        abcd::Renderer::BeginScene(mCamera);
+        abcd::Renderer::BeginScene(mCameraController.GetCamera());
         {
             glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -211,8 +184,9 @@ public:
         ImGui::End();
     }
 
-    void OnEvent(abcd::Event& event) override
+    void OnEvent(abcd::Event& e) override
     {
+        mCameraController.OnEvent(e);
     }
 
 private:
@@ -225,12 +199,7 @@ private:
 
     abcd::Ref<abcd::Texture2D> mTexture, mChernoLogoTexture;
 
-    abcd::OrthographicCamera mCamera;
-    glm::vec3 mCameraPosition;
-    float mCameraMoveSpeed = 5.0f;
-
-    float mCameraRotation = 0.0f;
-    float mCameraRotationSpeed = 180.0f;
+    abcd::OrthographicCameraController mCameraController;
 
     glm::vec3 mSquareColor = { 0.2f, 0.3f, 0.8f };
 };
