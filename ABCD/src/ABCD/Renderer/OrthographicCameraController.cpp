@@ -1,8 +1,8 @@
 #include "abpch.h"
 #include "OrthographicCameraController.h"
 
-#include "ABCD/Input.h"
-#include "ABCD/KeyCodes.h"
+#include "ABCD/Core/Input.h"
+#include "ABCD/Core/KeyCodes.h"
 
 namespace abcd 
 {

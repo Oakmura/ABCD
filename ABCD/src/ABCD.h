@@ -1,15 +1,15 @@
 #pragma once
 
-#include "ABCD/Application.h"
-#include "ABCD/Layer.h"
-#include "ABCD/Log.h"
+#include "ABCD/Core/Application.h"
+#include "ABCD/Core/Layer.h"
+#include "ABCD/Core/Log.h"
 
 #include "ABCD/Core/Timestep.h"
 
-#include "ABCD/Input.h"
-#include "ABCD/KeyCodes.h"
-#include "ABCD/MouseButtonCodes.h"
-#include "ABCD/OrthographicCameraController.h"
+#include "ABCD/Core/Input.h"
+#include "ABCD/Core/KeyCodes.h"
+#include "ABCD/Core/MouseButtonCodes.h"  
+#include "ABCD/Renderer/OrthographicCameraController.h"
 
 #include "ABCD/ImGui/ImGuiLayer.h"
 
@@ -23,8 +23,4 @@
 #include "ABCD/Renderer/IVertexArray.h"
 
 #include "ABCD/Renderer/OrthographicCamera.h"
-// -----------------------------------
-
-// ---Entry Point------------------
-#include "ABCD/EntryPoint.h"
 // --------------------------------

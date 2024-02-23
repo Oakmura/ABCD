@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ABCD/IWindow.h"
+#include "ABCD/Core/IWindow.h"
 #include "ABCD/Renderer/IGraphicsContext.h"
 
 #include <GLFW/glfw3.h>

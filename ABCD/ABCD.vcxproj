@@ -148,23 +148,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\ABCD.h" />
-    <ClInclude Include="src\ABCD\Application.h" />
-    <ClInclude Include="src\ABCD\Core.h" />
+    <ClInclude Include="src\ABCD\Core\Application.h" />
+    <ClInclude Include="src\ABCD\Core\Core.h" />
     <ClInclude Include="src\ABCD\Core\Timestep.h" />
-    <ClInclude Include="src\ABCD\EntryPoint.h" />
+    <ClInclude Include="src\ABCD\Core\EntryPoint.h" />
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h" />
     <ClInclude Include="src\ABCD\Events\Event.h" />
     <ClInclude Include="src\ABCD\Events\KeyEvent.h" />
     <ClInclude Include="src\ABCD\Events\MouseEvent.h" />
-    <ClInclude Include="src\ABCD\IWindow.h" />
+    <ClInclude Include="src\ABCD\Core\IWindow.h" />
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\ABCD\Input.h" />
-    <ClInclude Include="src\ABCD\KeyCodes.h" />
-    <ClInclude Include="src\ABCD\Layer.h" />
-    <ClInclude Include="src\ABCD\LayerStack.h" />
-    <ClInclude Include="src\ABCD\Log.h" />
-    <ClInclude Include="src\ABCD\MouseButtonCodes.h" />
-    <ClInclude Include="src\ABCD\OrthographicCameraController.h" />
+    <ClInclude Include="src\ABCD\Core\Input.h" />
+    <ClInclude Include="src\ABCD\Core\KeyCodes.h" />
+    <ClInclude Include="src\ABCD\Core\Layer.h" />
+    <ClInclude Include="src\ABCD\Core\LayerStack.h" />
+    <ClInclude Include="src\ABCD\Core\Log.h" />
+    <ClInclude Include="src\ABCD\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\ABCD\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h" />
     <ClInclude Include="src\ABCD\Renderer\IRendererAPI.h" />
@@ -602,13 +602,13 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ABCD\Application.cpp" />
+    <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\ABCD\Layer.cpp" />
-    <ClCompile Include="src\ABCD\LayerStack.cpp" />
-    <ClCompile Include="src\ABCD\Log.cpp" />
-    <ClCompile Include="src\ABCD\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\ABCD\Core\Layer.cpp" />
+    <ClCompile Include="src\ABCD\Core\LayerStack.cpp" />
+    <ClCompile Include="src\ABCD\Core\Log.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IShader.cpp" />
