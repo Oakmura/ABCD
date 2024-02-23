@@ -11,6 +11,7 @@ namespace abcd
     {
         for (Layer* layer : mLayers)
         {
+            layer->OnDetach();
             delete layer;
         }
     }
