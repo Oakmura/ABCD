@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IRendererAPI.h"
+#include "ABCD/Renderer/IRendererAPI.h"
 
 namespace abcd 
 {
@@ -27,7 +27,7 @@ namespace abcd
             sRendererAPI->Clear();
         }
 
-        inline static void DrawIndexed(const std::shared_ptr<IVertexArray>& vertexArray)
+        inline static void DrawIndexed(const Ref<IVertexArray>& vertexArray)
         {
             sRendererAPI->DrawIndexed(vertexArray);
         }

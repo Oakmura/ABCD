@@ -1,9 +1,7 @@
 #include "ABCD.h"
 #include <ABCD/Core/EntryPoint.h>
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -24,8 +22,7 @@ public:
              0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
-        abcd::Ref<abcd::IVertexBuffer> vertexBuffer;
-        vertexBuffer.reset(abcd::IVertexBuffer::Create(vertices, sizeof(vertices)));
+        abcd::Ref<abcd::IVertexBuffer> vertexBuffer = abcd::IVertexBuffer::Create(vertices, sizeof(vertices));
         abcd::BufferLayout layout = {
             { abcd::ShaderDataType::Float3, "a_Position" },
             { abcd::ShaderDataType::Float4, "a_Color" }
@@ -34,8 +31,7 @@ public:
         mVertexArray->AddVertexBuffer(vertexBuffer);
 
         uint32_t indices[3] = { 0, 1, 2 };
-        abcd::Ref<abcd::IIndexBuffer> indexBuffer;
-        indexBuffer.reset(abcd::IIndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        abcd::Ref<abcd::IIndexBuffer> indexBuffer = abcd::IIndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
         mVertexArray->SetIndexBuffer(indexBuffer);
 
         mSquareVA = abcd::IVertexArray::Create();
@@ -46,8 +42,7 @@ public:
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
-        abcd::Ref<abcd::IVertexBuffer> squareVB;
-        squareVB.reset(abcd::IVertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        abcd::Ref<abcd::IVertexBuffer> squareVB = abcd::IVertexBuffer::Create(squareVertices, sizeof(squareVertices));
         squareVB->SetLayout({
             { abcd::ShaderDataType::Float3, "a_Position" },
             { abcd::ShaderDataType::Float2, "a_TexCoord" }
@@ -55,8 +50,7 @@ public:
         mSquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-        abcd::Ref<abcd::IIndexBuffer> squareIB;
-        squareIB.reset(abcd::IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        abcd::Ref<abcd::IIndexBuffer> squareIB = abcd::IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         mSquareVA->SetIndexBuffer(squareIB);
 
         std::string vertexSrc = R"(
@@ -135,8 +129,8 @@ public:
         mTexture = abcd::Texture2D::Create("assets/textures/Checkerboard.png");
         mChernoLogoTexture = abcd::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-        std::dynamic_pointer_cast<abcd::OpenGLShader>(textureShader)->Bind();
-        std::dynamic_pointer_cast<abcd::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+        textureShader->Bind();
+        textureShader->SetInt("u_Texture", 0);
     }
 
     void OnUpdate(abcd::Timestep ts) override
@@ -152,8 +146,8 @@ public:
         {
             glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-            std::dynamic_pointer_cast<abcd::OpenGLShader>(mFlatColorShader)->Bind();
-            std::dynamic_pointer_cast<abcd::OpenGLShader>(mFlatColorShader)->UploadUniformFloat3("u_Color", mSquareColor);
+            mFlatColorShader->Bind();
+            mFlatColorShader->SetFloat3("u_Color", mSquareColor);
 
             for (int y = 0; y < 20; y++)
             {

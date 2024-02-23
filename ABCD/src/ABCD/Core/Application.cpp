@@ -1,18 +1,16 @@
 #include "abpch.h"
-#include "Application.h"
+#include "ABCD/Core/Application.h"
 
 #include "ABCD/Core/Log.h"
 
 #include "ABCD/Renderer/Renderer.h"
 
-#include "Input.h"
+#include "ABCD/Core/Input.h"
 
 #include <glfw/glfw3.h>
 
 namespace abcd
 {
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
     Application* Application::sInstance = nullptr;
 
     Application::Application()
@@ -20,8 +18,8 @@ namespace abcd
         AB_CORE_ASSERT(!sInstance, "Application already exists!");
         sInstance = this;
 
-        mWindow = std::unique_ptr<IWindow>(IWindow::Create());
-        mWindow->SetEventCallback(BIND_EVENT_FN(OnEvent));
+        mWindow = IWindow::Create();
+        mWindow->SetEventCallback(AB_BIND_EVENT_FN(Application::OnEvent));
 
         Renderer::Init();
 
@@ -29,11 +27,16 @@ namespace abcd
         PushOverlay(mImGuiLayer);
     }
 
+    Application::~Application()
+    {
+        Renderer::Shutdown();
+    }
+
     void Application::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
-        dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(onWindowResize));
+        dispatcher.Dispatch<WindowCloseEvent>(AB_BIND_EVENT_FN(Application::onWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(AB_BIND_EVENT_FN(Application::onWindowResize));
 
         for (auto it = mLayerStack.end(); it != mLayerStack.begin(); )
         {

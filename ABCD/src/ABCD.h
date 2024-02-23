@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ABCD/Core/Core.h"
+
 #include "ABCD/Core/Application.h"
 #include "ABCD/Core/Layer.h"
 #include "ABCD/Core/Log.h"

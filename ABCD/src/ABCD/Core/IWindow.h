@@ -22,7 +22,7 @@ namespace abcd
     };
 
     // Interface representing a desktop system based Window
-    class AB_API IWindow
+    class IWindow
     {
     public:
         using EventCallbackFn = std::function<void(Event&)>;
@@ -40,7 +40,7 @@ namespace abcd
 
         virtual void* GetNativeWindow() const = 0;
 
-        static IWindow* Create(const WindowProps& props = WindowProps());
+        static Scope<IWindow> Create(const WindowProps& props = WindowProps());
     };
 
 }

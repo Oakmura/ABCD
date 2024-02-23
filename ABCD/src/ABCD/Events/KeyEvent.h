@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Event.h"
+#include "ABCD/Events/Event.h"
 
-namespace abcd {
-
-    class AB_API KeyEvent : public Event
+namespace abcd 
+{
+    class KeyEvent : public Event
     {
     public:
         inline int GetKeyCode() const { return mKeyCode; }
@@ -17,7 +17,7 @@ namespace abcd {
         int mKeyCode;
     };
 
-    class AB_API KeyPressedEvent : public KeyEvent
+    class KeyPressedEvent : public KeyEvent
     {
     public:
         KeyPressedEvent(int keycode, int repeatCount)
@@ -37,7 +37,7 @@ namespace abcd {
         int mRepeatCount;
     };
 
-    class AB_API KeyReleasedEvent : public KeyEvent
+    class KeyReleasedEvent : public KeyEvent
     {
     public:
         KeyReleasedEvent(int keycode)
@@ -53,7 +53,7 @@ namespace abcd {
         EVENT_CLASS_TYPE(KeyReleased)
     };
 
-    class AB_API KeyTypedEvent : public KeyEvent
+    class KeyTypedEvent : public KeyEvent
     {
     public:
         KeyTypedEvent(int keycode) 

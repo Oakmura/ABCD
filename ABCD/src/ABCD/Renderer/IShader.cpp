@@ -1,7 +1,7 @@
 #include "abpch.h"
-#include "IShader.h"
+#include "ABCD/Renderer/IShader.h"
 
-#include "Renderer.h"
+#include "ABCD/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace abcd 
@@ -11,7 +11,7 @@ namespace abcd
         switch (Renderer::GetAPI())
         {
         case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case IRendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
+        case IRendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -23,7 +23,7 @@ namespace abcd
         switch (Renderer::GetAPI())
         {
         case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case IRendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+        case IRendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");

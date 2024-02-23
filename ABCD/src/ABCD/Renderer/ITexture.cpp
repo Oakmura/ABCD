@@ -1,7 +1,7 @@
 #include "abpch.h"
-#include "ITexture.h"
+#include "ABCD/Renderer/ITexture.h"
 
-#include "Renderer.h"
+#include "ABCD/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace abcd 

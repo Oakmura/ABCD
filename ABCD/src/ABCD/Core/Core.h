@@ -41,20 +41,9 @@
     #error "Unknown platform!"
 #endif // End of platform detection
 
-// DLL support
-#ifdef AB_PLATFORM_WINDOWS
-    #if AB_DYNAMIC_LINK
-        #ifdef AB_BUILD_DLL
-            #define AB_API __declspec(dllexport)
-        #else
-            #define AB_API __declspec(dllimport)
-        #endif
-    #else
-        #define AB_API
-    #endif
-#else
-    #error ABCD only supports Windows!
-#endif // End of DLL support
+#ifdef AB_DEBUG
+    #define AB_ENABLE_ASSERTS
+#endif
 
 #ifdef AB_ENABLE_ASSERTS
     #define AB_ASSERT(x, ...) { if(!(x)) { AB_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

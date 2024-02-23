@@ -1,9 +1,9 @@
 #include "abpch.h"
-#include "Renderer2D.h"
+#include "ABCD/Renderer/Renderer2D.h"
 
-#include "IVertexArray.h"
-#include "IShader.h"
-#include "RenderCommand.h"
+#include "ABCD/Renderer/IVertexArray.h"
+#include "ABCD/Renderer/IShader.h"
+#include "ABCD/Renderer/RenderCommand.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -30,8 +30,7 @@ namespace abcd
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
-        Ref<IVertexBuffer> squareVB;
-        squareVB = IVertexBuffer::Create(squareVertices, sizeof(squareVertices));
+        Ref<IVertexBuffer> squareVB = IVertexBuffer::Create(squareVertices, sizeof(squareVertices));
         squareVB->SetLayout({
             { ShaderDataType::Float3, "a_Position" },
             { ShaderDataType::Float2, "a_TexCoord" }
@@ -39,8 +38,7 @@ namespace abcd
         sData->QuadVertexArray->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-        Ref<IIndexBuffer> squareIB;
-        squareIB = IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
+        Ref<IIndexBuffer> squareIB = IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         sData->QuadVertexArray->SetIndexBuffer(squareIB);
 
         sData->WhiteTexture = Texture2D::Create(1, 1);

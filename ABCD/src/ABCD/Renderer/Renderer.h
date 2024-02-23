@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderCommand.h"
+#include "ABCD/Renderer/RenderCommand.h"
 
-#include "OrthographicCamera.h"
-#include "IShader.h"
+#include "ABCD/Renderer/OrthographicCamera.h"
+#include "ABCD/Renderer/IShader.h"
 
 namespace abcd 
 {
@@ -11,12 +11,14 @@ namespace abcd
     {
     public:
         static void Init();
+        static void Shutdown();
+
         static void OnWindowResize(uint32_t width, uint32_t height);
 
         static void BeginScene(OrthographicCamera& camera);
         static void EndScene();
 
-        static void Submit(const std::shared_ptr<IShader>& shader, const std::shared_ptr<IVertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
+        static void Submit(const Ref<IShader>& shader, const Ref<IVertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
 
         inline static IRendererAPI::API GetAPI() { return IRendererAPI::GetAPI(); }
 

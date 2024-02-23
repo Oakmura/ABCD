@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ABCD/Core/Core.h"
+
 #ifdef AB_PLATFORM_WINDOWS
 
 extern abcd::Application* abcd::CreateApplication();

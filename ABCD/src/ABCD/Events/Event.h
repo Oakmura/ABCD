@@ -1,6 +1,7 @@
 #pragma once
 
 #include "abpch.h"
+
 #include "ABCD/Core/Core.h"
 
 namespace abcd
@@ -30,7 +31,7 @@ namespace abcd
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-    class AB_API Event
+    class Event
     {
     public:
         virtual eEventType GetEventType() const = 0;

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Core.h"
-#include "IWindow.h"
+#include "ABCD/Core/Core.h"
+
+#include "ABCD/Core/IWindow.h"
 
 #include "ABCD/Core/LayerStack.h"
 #include "ABCD/Events/Event.h"
@@ -17,7 +18,7 @@ namespace abcd
     {
     public:
         Application();
-        virtual ~Application() = default;
+        virtual ~Application();
 
         void Run();
         void OnEvent(Event& e);

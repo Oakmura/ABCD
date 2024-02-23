@@ -4,7 +4,7 @@
 
 namespace abcd 
 {
-    class AB_API Input
+    class Input
     {
     protected:
         Input() = default;

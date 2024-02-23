@@ -1,6 +1,6 @@
 #include "abpch.h"
 
-#include "WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 #include "ABCD/Events/ApplicationEvent.h"
 #include "ABCD/Events/MouseEvent.h"
@@ -17,9 +17,9 @@ namespace abcd
         AB_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
     }
 
-    IWindow* IWindow::Create(const WindowProps& props)
+    Scope<IWindow> IWindow::Create(const WindowProps& props)
     {
-        return new WindowsWindow(props);
+        return CreateScope<WindowsWindow>(props);
     }
 
     WindowsWindow::WindowsWindow(const WindowProps& props)
@@ -42,7 +42,6 @@ namespace abcd
 
         if (sGLFWWindowCount == 0)
         {
-            AB_CORE_INFO("Initializing GLFW");
             int success = glfwInit();
             AB_CORE_ASSERT(success, "Could not intialize GLFW!");
 
@@ -52,7 +51,7 @@ namespace abcd
         mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
         ++sGLFWWindowCount;
 
-        mContext = CreateScope<OpenGLContext>(mWindow);
+        mContext = IGraphicsContext::Create(mWindow);
         mContext->Init();
 
         glfwSetWindowUserPointer(mWindow, &mData);
@@ -162,9 +161,9 @@ namespace abcd
     {
         glfwDestroyWindow(mWindow);
 
-        if (--sGLFWWindowCount == 0)
+        --sGLFWWindowCount;
+        if (sGLFWWindowCount == 0)
         {
-            AB_CORE_INFO("Terminating GLFW");
             glfwTerminate();
         }
     }

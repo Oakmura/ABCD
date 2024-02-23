@@ -1,9 +1,7 @@
 #include "abpch.h"
-#include "RenderCommand.h"
-
-#include "Platform/OpenGL/OpenGLRendererAPI.h"
+#include "ABCD/Renderer/RenderCommand.h"
 
 namespace abcd 
 {
-    Scope<IRendererAPI> RenderCommand::sRendererAPI = CreateScope<OpenGLRendererAPI>();
+    Scope<IRendererAPI> RenderCommand::sRendererAPI = IRendererAPI::Create();
 }

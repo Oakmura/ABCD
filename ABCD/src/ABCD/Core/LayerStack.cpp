@@ -1,12 +1,8 @@
 #include "abpch.h"
-#include "LayerStack.h"
+#include "ABCD/Core/LayerStack.h"
 
 namespace abcd
 {
-    LayerStack::LayerStack()
-    {
-    }
-
     LayerStack::~LayerStack()
     {
         for (Layer* layer : mLayers)

@@ -1,12 +1,12 @@
 #include "abpch.h"
-#include "Log.h"
+#include "ABCD/Core/Log.h"
 
-#include "spdlog/sinks/stdout_color_sinks.h"
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace abcd
 {
-    std::shared_ptr<spdlog::logger> Log::sCoreLogger;
-    std::shared_ptr<spdlog::logger> Log::sClientLogger;
+    Ref<spdlog::logger> Log::sCoreLogger;
+    Ref<spdlog::logger> Log::sClientLogger;
 
     void Log::Init()
     {

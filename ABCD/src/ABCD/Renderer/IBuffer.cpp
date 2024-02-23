@@ -1,30 +1,30 @@
 #include "abpch.h"
-#include "IBuffer.h"
+#include "ABCD/Renderer/IBuffer.h"
 
-#include "Renderer.h"
+#include "ABCD/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace abcd 
 {
-    IVertexBuffer* IVertexBuffer::Create(float* vertices, uint32_t size)
+    Ref<IVertexBuffer> IVertexBuffer::Create(float* vertices, uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
         case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case IRendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
+        case IRendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, size);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");
         return nullptr;
     }
 
-    IIndexBuffer* IIndexBuffer::Create(uint32_t* indices, uint32_t size)
+    Ref<IIndexBuffer> IIndexBuffer::Create(uint32_t* indices, uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
         case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case IRendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, size);
+        case IRendererAPI::API::OpenGL:  return CreateRef<OpenGLIndexBuffer>(indices, size);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");

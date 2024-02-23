@@ -1,8 +1,8 @@
 #pragma once
 
-#include "OrthographicCamera.h"
+#include "ABCD/Renderer/OrthographicCamera.h"
 
-#include "ITexture.h"
+#include "ABCD/Renderer/ITexture.h"
 
 namespace abcd 
 {

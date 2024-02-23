@@ -111,7 +111,7 @@ namespace abcd
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(const BufferLayout& layout) = 0;
 
-        static IVertexBuffer* Create(float* vertices, uint32_t size);
+        static Ref<IVertexBuffer> Create(float* vertices, uint32_t size);
     };
 
     class IIndexBuffer
@@ -124,6 +124,6 @@ namespace abcd
 
         virtual uint32_t GetCount() const = 0;
 
-        static IIndexBuffer* Create(uint32_t* indices, uint32_t size);
+        static Ref<IIndexBuffer> Create(uint32_t* indices, uint32_t size);
     };
 }

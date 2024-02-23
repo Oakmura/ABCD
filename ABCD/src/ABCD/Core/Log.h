@@ -1,22 +1,24 @@
 #pragma once
 
-#include "Core.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
+
+#include "ABCD/Core/Core.h"
+
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace abcd
 {
-    class AB_API Log
+    class Log
     {
     public:
         static void Init();
 
-        inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return sCoreLogger; }
-        inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return sClientLogger; }
+        inline static Ref<spdlog::logger>& GetCoreLogger() { return sCoreLogger; }
+        inline static Ref<spdlog::logger>& GetClientLogger() { return sClientLogger; }
 
     private:
-        static std::shared_ptr<spdlog::logger> sCoreLogger;
-        static std::shared_ptr<spdlog::logger> sClientLogger;
+        static Ref<spdlog::logger> sCoreLogger;
+        static Ref<spdlog::logger> sClientLogger;
     };
 }
 
