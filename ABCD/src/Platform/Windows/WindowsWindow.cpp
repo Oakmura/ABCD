@@ -10,7 +10,7 @@
 
 namespace abcd
 {
-    static bool s_GLFWInitialized = false;
+    static uint8_t sGLFWWindowCount = 0;
 
     static void GLFWErrorCallback(int error, const char* description)
     {
@@ -40,17 +40,17 @@ namespace abcd
 
         AB_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-        if (!s_GLFWInitialized)
+        if (sGLFWWindowCount == 0)
         {
-            // TODO: glfwTerminate on system shutdown
+            AB_CORE_INFO("Initializing GLFW");
             int success = glfwInit();
             AB_CORE_ASSERT(success, "Could not intialize GLFW!");
 
             glfwSetErrorCallback(GLFWErrorCallback);
-            s_GLFWInitialized = true;
         }
 
         mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
+        ++sGLFWWindowCount;
 
         mContext = CreateScope<OpenGLContext>(mWindow);
         mContext->Init();
@@ -161,6 +161,12 @@ namespace abcd
     void WindowsWindow::Shutdown()
     {
         glfwDestroyWindow(mWindow);
+
+        if (--sGLFWWindowCount == 0)
+        {
+            AB_CORE_INFO("Terminating GLFW");
+            glfwTerminate();
+        }
     }
 
     void WindowsWindow::OnUpdate()
