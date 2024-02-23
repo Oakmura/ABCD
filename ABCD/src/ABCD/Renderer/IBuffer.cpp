@@ -11,8 +11,8 @@ namespace abcd
     {
         switch (Renderer::GetAPI())
         {
-        case RendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case RendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
+        case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+        case IRendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -23,8 +23,8 @@ namespace abcd
     {
         switch (Renderer::GetAPI())
         {
-        case RendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-        case RendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, size);
+        case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+        case IRendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, size);
         }
 
         AB_CORE_ASSERT(false, "Unknown RendererAPI!");

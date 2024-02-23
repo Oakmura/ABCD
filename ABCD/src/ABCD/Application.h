@@ -31,6 +31,7 @@ namespace abcd
 
     private:
         bool onWindowClose(WindowCloseEvent& e);
+        bool onWindowResize(WindowResizeEvent& e);
 
     private:
         std::unique_ptr<IWindow> mWindow;
@@ -38,6 +39,7 @@ namespace abcd
         LayerStack mLayerStack;
 
         bool mbRunning = true;
+        bool mbMinimized = false;
         float mLastFrameTime = 0.0f;
 
     private:

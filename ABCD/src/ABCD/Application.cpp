@@ -33,6 +33,7 @@ namespace abcd
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(onWindowResize));
 
         for (auto it = mLayerStack.end(); it != mLayerStack.begin(); )
         {
@@ -61,6 +62,20 @@ namespace abcd
         return true;
     }
 
+    bool Application::onWindowResize(WindowResizeEvent& e)
+    {
+        if (e.GetWidth() == 0 || e.GetHeight() == 0)
+        {
+            mbMinimized = true;
+            return false;
+        }
+
+        mbMinimized = false;
+        Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+        return false;
+    }
+
     void Application::Run()
     {
         while (mbRunning)
@@ -69,9 +84,12 @@ namespace abcd
             Timestep timestep = time - mLastFrameTime;
             mLastFrameTime = time;
 
-            for (Layer* layer : mLayerStack)
+            if (!mbMinimized)
             {
-                layer->OnUpdate(timestep);
+                for (Layer* layer : mLayerStack)
+                {
+                    layer->OnUpdate(timestep);
+                }
             }
 
             mImGuiLayer->Begin();

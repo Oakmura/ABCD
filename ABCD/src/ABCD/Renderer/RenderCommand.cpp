@@ -5,5 +5,5 @@
 
 namespace abcd 
 {
-    RendererAPI* RenderCommand::sRendererAPI = new OpenGLRendererAPI;
+    IRendererAPI* RenderCommand::sRendererAPI = new OpenGLRendererAPI;
 }

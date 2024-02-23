@@ -126,7 +126,7 @@
     <ClInclude Include="src\ABCD\Renderer\Renderer.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\RendererAPI.h">
+    <ClInclude Include="src\ABCD\Renderer\IRendererAPI.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1445,7 +1445,7 @@
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\RendererAPI.cpp">
+    <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
