@@ -33,7 +33,7 @@ namespace abcd
         std::string Name;
         ShaderDataType Type;
         uint32_t Size;
-        uint32_t Offset;
+        size_t Offset;
         bool Normalized;
 
         BufferElement() = default;
@@ -86,7 +86,7 @@ namespace abcd
     private:
         void calculateOffsetsAndStride()
         {
-            uint32_t offset = 0;
+            size_t offset = 0;
             mStride = 0;
             for (auto& element : mElements)
             {
