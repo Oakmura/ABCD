@@ -155,6 +155,7 @@ namespace abcd
 
             for (auto id : glShaderIDs)
             {
+                glDetachShader(program, id);
                 glDeleteShader(id);
             }
 
