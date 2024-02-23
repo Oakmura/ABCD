@@ -6,7 +6,7 @@
 
 namespace abcd 
 {
-    Input* Input::sInstance = new WindowsInput();
+    Scope<Input> Input::sInstance = CreateScope<WindowsInput>();
 
     bool WindowsInput::IsKeyPressedImpl(int keycode)
     {

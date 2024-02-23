@@ -27,6 +27,6 @@ namespace abcd
         virtual float GetMouseYImpl() = 0;
 
     private:
-        static Input* sInstance;
+        static Scope<Input> sInstance;
     };
 }

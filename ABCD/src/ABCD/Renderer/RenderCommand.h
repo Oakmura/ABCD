@@ -33,7 +33,7 @@ namespace abcd
         }
 
     private:
-        static IRendererAPI* sRendererAPI;
+        static Scope<IRendererAPI> sRendererAPI;
     };
 
 }

@@ -5,5 +5,5 @@
 
 namespace abcd 
 {
-    IRendererAPI* RenderCommand::sRendererAPI = new OpenGLRendererAPI;
+    Scope<IRendererAPI> RenderCommand::sRendererAPI = CreateScope<OpenGLRendererAPI>();
 }

@@ -26,6 +26,6 @@ namespace abcd
             glm::mat4 ViewProjectionMatrix;
         };
 
-        static SceneData* sSceneData;
+        static Scope<SceneData> sSceneData;
     };
 }

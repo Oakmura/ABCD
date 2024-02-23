@@ -52,7 +52,7 @@ namespace abcd
 
         mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
 
-        mContext = new OpenGLContext(mWindow);
+        mContext = CreateScope<OpenGLContext>(mWindow);
         mContext->Init();
 
         glfwSetWindowUserPointer(mWindow, &mData);

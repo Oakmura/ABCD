@@ -42,21 +42,21 @@ namespace abcd
         Add(name, shader);
     }
 
-    abcd::Ref<abcd::IShader> ShaderLibrary::Load(const std::string& filepath)
+    Ref<IShader> ShaderLibrary::Load(const std::string& filepath)
     {
         auto shader = IShader::Create(filepath);
         Add(shader);
         return shader;
     }
 
-    abcd::Ref<abcd::IShader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
+    Ref<IShader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
     {
         auto shader = IShader::Create(filepath);
         Add(name, shader);
         return shader;
     }
 
-    abcd::Ref<abcd::IShader> ShaderLibrary::Get(const std::string& name)
+    Ref<IShader> ShaderLibrary::Get(const std::string& name)
     {
         AB_CORE_ASSERT(Exists(name), "Shader not found!");
         return mShaders[name];

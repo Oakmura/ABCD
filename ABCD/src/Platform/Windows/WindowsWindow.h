@@ -28,7 +28,7 @@ namespace abcd
         virtual void Shutdown();
     private:
         GLFWwindow* mWindow;
-        IGraphicsContext* mContext;
+        Scope<IGraphicsContext> mContext;
 
         struct WindowData
         {
