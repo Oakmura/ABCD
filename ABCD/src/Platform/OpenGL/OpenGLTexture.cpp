@@ -3,10 +3,24 @@
 
 #include "stb_image.h"
 
-#include <glad/glad.h>
-
 namespace abcd 
 {
+    OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
+        : mWidth(width), mHeight(height)
+    {
+        mInternalFormat = GL_RGBA8;
+        mDataFormat = GL_RGBA;
+
+        glCreateTextures(GL_TEXTURE_2D, 1, &mRendererID);
+        glTextureStorage2D(mRendererID, 1, mInternalFormat, mWidth, mHeight);
+
+        glTextureParameteri(mRendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTextureParameteri(mRendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        glTextureParameteri(mRendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTextureParameteri(mRendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    }
+
     OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
         : mPath(path)
     {
@@ -29,6 +43,9 @@ namespace abcd
             dataFormat = GL_RGB;
         }
 
+        mInternalFormat = internalFormat;
+        mDataFormat = dataFormat;
+
         AB_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &mRendererID);
@@ -48,6 +65,13 @@ namespace abcd
     OpenGLTexture2D::~OpenGLTexture2D()
     {
         glDeleteTextures(1, &mRendererID);
+    }
+
+    void OpenGLTexture2D::SetData(void* data, uint32_t size)
+    {
+        uint32_t bytePerPixel = mDataFormat == GL_RGBA ? 4 : 3;
+        AB_CORE_ASSERT(size == mWidth * mHeight * bytePerPixel, "Data must be entire texture!");
+        glTextureSubImage2D(mRendererID, 0, 0, 0, mWidth, mHeight, mDataFormat, GL_UNSIGNED_BYTE, data);
     }
 
     void OpenGLTexture2D::Bind(uint32_t slot) const

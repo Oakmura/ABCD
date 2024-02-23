@@ -12,8 +12,8 @@ namespace abcd
     struct Renderer2DStorage
     {
         Ref<IVertexArray> QuadVertexArray;
-        Ref<IShader> FlatColorShader;
         Ref<IShader> TextureShader;
+        Ref<Texture2D> WhiteTexture;
     };
 
     static Renderer2DStorage* sData;
@@ -43,7 +43,10 @@ namespace abcd
         squareIB = IIndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         sData->QuadVertexArray->SetIndexBuffer(squareIB);
 
-        sData->FlatColorShader = IShader::Create("assets/shaders/FlatColor.glsl");
+        sData->WhiteTexture = Texture2D::Create(1, 1);
+        uint32_t whiteTextureData = 0xffffffff;
+        sData->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
         sData->TextureShader = IShader::Create("assets/shaders/Texture.glsl");
         sData->TextureShader->Bind();
         sData->TextureShader->SetInt("u_Texture", 0);
@@ -56,20 +59,12 @@ namespace abcd
 
     void Renderer2D::BeginScene(const OrthographicCamera& camera)
     {
-        std::dynamic_pointer_cast<OpenGLShader>(sData->FlatColorShader)->Bind();
-        std::dynamic_pointer_cast<OpenGLShader>(sData->FlatColorShader)->UploadUniformMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-        std::dynamic_pointer_cast<OpenGLShader>(sData->FlatColorShader)->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
-
-        sData->FlatColorShader->Bind();
-        sData->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
         sData->TextureShader->Bind();
         sData->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
     }
 
     void Renderer2D::EndScene()
     {
-
     }
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -79,11 +74,11 @@ namespace abcd
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
     {
-        sData->FlatColorShader->Bind();
-        sData->FlatColorShader->SetFloat4("u_Color", color);
+        sData->TextureShader->SetFloat4("u_Color", color);
+        sData->WhiteTexture->Bind();
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-        sData->FlatColorShader->SetMat4("u_Transform", transform);
+        sData->TextureShader->SetMat4("u_Transform", transform);
 
         sData->QuadVertexArray->Bind();
         RenderCommand::DrawIndexed(sData->QuadVertexArray);
@@ -96,12 +91,11 @@ namespace abcd
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
     {
-        sData->TextureShader->Bind();
+        sData->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+        texture->Bind();
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
         sData->TextureShader->SetMat4("u_Transform", transform);
-
-        texture->Bind();
 
         sData->QuadVertexArray->Bind();
         RenderCommand::DrawIndexed(sData->QuadVertexArray);
