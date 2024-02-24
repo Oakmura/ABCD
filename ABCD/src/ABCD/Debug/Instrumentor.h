@@ -3,15 +3,19 @@
 #include <algorithm>
 #include <chrono>
 #include <fstream>
+#include <iomanip>
 #include <string>
 #include <thread>
 
 namespace abcd 
 {
+    using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;
+
     struct ProfileResult
     {
         std::string Name;
-        long long Start, End;
+        FloatingPointMicroseconds Start;
+        std::chrono::microseconds ElapsedTime;
         std::thread::id ThreadID;
     };
 
@@ -47,6 +51,7 @@ namespace abcd
                 }
                 internalEndSession();
             }
+
             mOutputStream.open(filepath);
             if (mOutputStream.is_open()) 
             {
@@ -74,14 +79,15 @@ namespace abcd
             std::string name = result.Name;
             std::replace(name.begin(), name.end(), '"', '\'');
 
+            json << std::setprecision(3) << std::fixed;
             json << ",{";
             json << "\"cat\":\"function\",";
-            json << "\"dur\":" << (result.End - result.Start) << ',';
+            json << "\"dur\":" << (result.ElapsedTime.count()) << ',';
             json << "\"name\":\"" << name << "\",";
             json << "\"ph\":\"X\",";
             json << "\"pid\":0,";
             json << "\"tid\":" << result.ThreadID << ",";
-            json << "\"ts\":" << result.Start;
+            json << "\"ts\":" << result.Start.count();
             json << "}";
 
             std::lock_guard lock(mMutex);
@@ -132,7 +138,7 @@ namespace abcd
         InstrumentationTimer(const char* name)
             : mName(name), mStopped(false)
         {
-            mStartTimepoint = std::chrono::high_resolution_clock::now();
+            mStartTimepoint = std::chrono::steady_clock::now();
         }
 
         ~InstrumentationTimer()
@@ -145,18 +151,18 @@ namespace abcd
 
         void Stop()
         {
-            auto endTimepoint = std::chrono::high_resolution_clock::now();
+            auto endTimepoint = std::chrono::steady_clock::now();
+            auto highResStart = FloatingPointMicroseconds{ mStartTimepoint.time_since_epoch() };
+            auto elapsedTime = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch() - 
+                std::chrono::time_point_cast<std::chrono::microseconds>(mStartTimepoint).time_since_epoch();
 
-            long long start = std::chrono::time_point_cast<std::chrono::microseconds>(mStartTimepoint).time_since_epoch().count();
-            long long end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
-
-            Instrumentor::Get().WriteProfile({ mName, start, end, std::this_thread::get_id() });
+            Instrumentor::Get().WriteProfile({ mName, highResStart, elapsedTime, std::this_thread::get_id() });
 
             mStopped = true;
         }
     private:
         const char* mName;
-        std::chrono::time_point<std::chrono::high_resolution_clock> mStartTimepoint;
+        std::chrono::time_point<std::chrono::steady_clock> mStartTimepoint;
         bool mStopped;
     };
 }
