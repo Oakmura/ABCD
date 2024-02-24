@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     AB_PROFILE_END_SESSION();
 
     AB_PROFILE_BEGIN_SESSION("Runtime", "ABCDProfile-Runtime.json");
-    app->Run();
+    app->run();
     AB_PROFILE_END_SESSION();
 
     AB_PROFILE_BEGIN_SESSION("Startup", "ABCDProfile-Shutdown.json");

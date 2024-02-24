@@ -93,13 +93,13 @@ namespace abcd
         return false;
     }
 
-    void Application::Run()
+    void Application::run()
     {
         AB_PROFILE_FUNCTION();
 
         while (mbRunning)
         {
-                ("RunLoop");
+            AB_PROFILE_SCOPE("RunLoop");
 
             float time = (float)glfwGetTime();
             Timestep timestep = time - mLastFrameTime;

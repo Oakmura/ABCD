@@ -12,6 +12,8 @@
 
 #include "ABCD/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace abcd
 {
     class Application
@@ -20,7 +22,6 @@ namespace abcd
         Application();
         virtual ~Application();
 
-        void Run();
         void OnEvent(Event& e);
 
         void PushLayer(Layer* layer);
@@ -31,6 +32,8 @@ namespace abcd
         inline static Application& Get() { return *sInstance; }
 
     private:
+        void run();
+
         bool onWindowClose(WindowCloseEvent& e);
         bool onWindowResize(WindowResizeEvent& e);
 
@@ -45,6 +48,7 @@ namespace abcd
 
     private:
         static Application* sInstance;
+        friend int ::main(int argc, char** argv);
     };
 
     Application* CreateApplication();
