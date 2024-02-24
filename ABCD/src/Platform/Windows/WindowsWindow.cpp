@@ -6,6 +6,8 @@
 #include "ABCD/Events/MouseEvent.h"
 #include "ABCD/Events/KeyEvent.h"
 
+#include "ABCD/Renderer/Renderer.h"
+
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace abcd
@@ -57,6 +59,12 @@ namespace abcd
 
         {
             AB_PROFILE_SCOPE("glfwCreateWindow");
+#if defined(AB_DEBUG)
+            if (Renderer::GetAPI() == IRendererAPI::API::OpenGL)
+            {
+                glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+            }
+#endif
             mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
             ++sGLFWWindowCount;
         }
