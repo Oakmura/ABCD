@@ -6,8 +6,6 @@
 
 namespace abcd 
 {
-    Scope<Input> Input::sInstance = CreateScope<WindowsInput>();
-
     bool WindowsInput::IsKeyPressedImpl(KeyCode key)
     {
         auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());

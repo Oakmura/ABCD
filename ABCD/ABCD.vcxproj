@@ -604,6 +604,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ABCD\Core\Input.cpp" />
+    <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />
     <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />

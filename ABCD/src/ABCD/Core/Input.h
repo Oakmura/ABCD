@@ -21,6 +21,8 @@ namespace abcd
         inline static float GetMouseX() { return sInstance->GetMouseXImpl(); }
         inline static float GetMouseY() { return sInstance->GetMouseYImpl(); }
 
+        static Scope<Input> Create();
+
     protected:
         virtual bool IsKeyPressedImpl(KeyCode key) = 0;
         virtual bool IsMouseButtonPressedImpl(MouseCode button) = 0;
