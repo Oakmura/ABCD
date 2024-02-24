@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "ABCD/Core/Core.h"
 
 #include <spdlog/spdlog.h>

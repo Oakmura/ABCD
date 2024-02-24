@@ -99,7 +99,7 @@ namespace abcd
 
         while (mbRunning)
         {
-            AB_PROFILE_SCOPE("RunLoop");
+                ("RunLoop");
 
             float time = (float)glfwGetTime();
             Timestep timestep = time - mLastFrameTime;
