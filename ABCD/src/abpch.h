@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "ABCD/Debug/Instrumentor.h"
 #include "ABCD/Core/Log.h"
 
 #ifdef AB_PLATFORM_WINDOWS

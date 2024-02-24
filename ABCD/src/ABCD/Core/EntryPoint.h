@@ -9,14 +9,18 @@ extern abcd::Application* abcd::CreateApplication();
 int main(int argc, char** argv)
 {
     abcd::Log::Init();
-    AB_CORE_TRACE("Initialized Log!");
 
-    int a = 5;
-    AB_INFO("Hello! Var={0}", a);
-
+    AB_PROFILE_BEGIN_SESSION("Startup", "ABCDProfile-Startup.json");
     auto app = abcd::CreateApplication();
+    AB_PROFILE_END_SESSION();
+
+    AB_PROFILE_BEGIN_SESSION("Runtime", "ABCDProfile-Runtime.json");
     app->Run();
+    AB_PROFILE_END_SESSION();
+
+    AB_PROFILE_BEGIN_SESSION("Startup", "ABCDProfile-Shutdown.json");
     delete app;
+    AB_PROFILE_END_SESSION();
 }
 
 #endif
