@@ -170,7 +170,6 @@ public:
             // Triangle
             // abcd::Renderer::Submit(m_Shader, m_VertexArray);
         }
-
         abcd::Renderer::EndScene();
     }
 
