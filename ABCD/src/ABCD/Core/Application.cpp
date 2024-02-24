@@ -44,9 +44,9 @@ namespace abcd
         dispatcher.Dispatch<WindowCloseEvent>(AB_BIND_EVENT_FN(Application::onWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(AB_BIND_EVENT_FN(Application::onWindowResize));
 
-        for (auto it = mLayerStack.end(); it != mLayerStack.begin(); )
+        for (auto it = mLayerStack.rbegin(); it != mLayerStack.rend(); ++it)
         {
-            (*--it)->OnEvent(e);
+            (*it)->OnEvent(e);
             if (e.mbHandled)
             {
                 break;
