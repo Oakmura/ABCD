@@ -28,26 +28,36 @@ namespace abcd
 
     OpenGLVertexArray::OpenGLVertexArray()
     {
+        AB_PROFILE_FUNCTION();
+
         glCreateVertexArrays(1, &mRendererID);
     }
 
     OpenGLVertexArray::~OpenGLVertexArray()
     {
+        AB_PROFILE_FUNCTION();
+
         glDeleteVertexArrays(1, &mRendererID);
     }
 
     void OpenGLVertexArray::Bind() const
     {
+        AB_PROFILE_FUNCTION();
+
         glBindVertexArray(mRendererID);
     }
 
     void OpenGLVertexArray::Unbind() const
     {
+        AB_PROFILE_FUNCTION();
+
         glBindVertexArray(0);
     }
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<IVertexBuffer>& vertexBuffer)
     {
+        AB_PROFILE_FUNCTION();
+
         AB_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(mRendererID);
@@ -72,6 +82,8 @@ namespace abcd
 
     void OpenGLVertexArray::SetIndexBuffer(const Ref<IIndexBuffer>& indexBuffer)
     {
+        AB_PROFILE_FUNCTION();
+
         glBindVertexArray(mRendererID);
         indexBuffer->Bind();
 

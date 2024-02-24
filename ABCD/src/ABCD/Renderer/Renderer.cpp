@@ -9,6 +9,8 @@ namespace abcd
 
     void Renderer::Init()
     {
+        AB_PROFILE_FUNCTION();
+
         RenderCommand::Init();
         Renderer2D::Init();
     }

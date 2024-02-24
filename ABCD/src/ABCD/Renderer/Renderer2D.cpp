@@ -20,6 +20,8 @@ namespace abcd
 
     void Renderer2D::Init()
     {
+        AB_PROFILE_FUNCTION();
+
         sData = new Renderer2DStorage();
         sData->QuadVertexArray = IVertexArray::Create();
 
@@ -52,17 +54,22 @@ namespace abcd
 
     void Renderer2D::Shutdown()
     {
+        AB_PROFILE_FUNCTION();
+
         delete sData;
     }
 
     void Renderer2D::BeginScene(const OrthographicCamera& camera)
     {
+        AB_PROFILE_FUNCTION();
+            
         sData->TextureShader->Bind();
         sData->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
     }
 
     void Renderer2D::EndScene()
     {
+        AB_PROFILE_FUNCTION();
     }
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -72,6 +79,8 @@ namespace abcd
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
     {
+        AB_PROFILE_FUNCTION();
+
         sData->TextureShader->SetFloat4("u_Color", color);
         sData->WhiteTexture->Bind();
 
@@ -89,6 +98,8 @@ namespace abcd
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
     {
+        AB_PROFILE_FUNCTION();
+
         sData->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
         texture->Bind();
 

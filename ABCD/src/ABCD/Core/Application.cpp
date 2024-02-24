@@ -15,6 +15,8 @@ namespace abcd
 
     Application::Application()
     {
+        AB_PROFILE_FUNCTION();
+
         AB_CORE_ASSERT(!sInstance, "Application already exists!");
         sInstance = this;
 
@@ -29,11 +31,15 @@ namespace abcd
 
     Application::~Application()
     {
+        AB_PROFILE_FUNCTION();
+
         Renderer::Shutdown();
     }
 
     void Application::OnEvent(Event& e)
     {
+        AB_PROFILE_FUNCTION();
+
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(AB_BIND_EVENT_FN(Application::onWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(AB_BIND_EVENT_FN(Application::onWindowResize));
@@ -50,12 +56,18 @@ namespace abcd
 
     void Application::PushLayer(Layer* layer)
     {
+        AB_PROFILE_FUNCTION();
+
         mLayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer* layer)
     {
+        AB_PROFILE_FUNCTION();
+
         mLayerStack.PushOverlay(layer);
+        layer->OnAttach();
     }
 
     bool Application::onWindowClose(WindowCloseEvent& e)
@@ -67,6 +79,8 @@ namespace abcd
 
     bool Application::onWindowResize(WindowResizeEvent& e)
     {
+        AB_PROFILE_FUNCTION();
+
         if (e.GetWidth() == 0 || e.GetHeight() == 0)
         {
             mbMinimized = true;
@@ -81,24 +95,35 @@ namespace abcd
 
     void Application::Run()
     {
+        AB_PROFILE_FUNCTION();
+
         while (mbRunning)
         {
+            AB_PROFILE_SCOPE("RunLoop");
+
             float time = (float)glfwGetTime();
             Timestep timestep = time - mLastFrameTime;
             mLastFrameTime = time;
 
             if (!mbMinimized)
             {
-                for (Layer* layer : mLayerStack)
                 {
-                    layer->OnUpdate(timestep);
+                    AB_PROFILE_SCOPE("LayerStack OnUpdate");
+
+                    for (Layer* layer : mLayerStack)
+                    {
+                        layer->OnUpdate(timestep);
+                    }
                 }
             }
 
             mImGuiLayer->Begin();
-            for (Layer* layer : mLayerStack)
             {
-                layer->OnImGuiRender();
+                AB_PROFILE_SCOPE("LayerStack OnImGuiRender");
+                for (Layer* layer : mLayerStack)
+                {
+                    layer->OnImGuiRender();
+                }
             }
             mImGuiLayer->End();
 

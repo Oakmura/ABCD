@@ -13,6 +13,8 @@ namespace abcd
 
     void OrthographicCameraController::OnUpdate(Timestep ts)
     {
+        AB_PROFILE_FUNCTION();
+
         if (Input::IsKeyPressed(AB_KEY_A))
         {
             mCameraPosition.x -= cos(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
@@ -65,6 +67,8 @@ namespace abcd
 
     void OrthographicCameraController::OnEvent(Event& e)
     {
+        AB_PROFILE_FUNCTION();
+
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<MouseScrolledEvent>(AB_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
         dispatcher.Dispatch<WindowResizeEvent>(AB_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
@@ -72,6 +76,8 @@ namespace abcd
 
     bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
     {
+        AB_PROFILE_FUNCTION();
+
         mZoomLevel -= e.GetYOffset() * 0.25f;
         mZoomLevel = std::max(mZoomLevel, 0.25f);
         mCamera.SetProjection(-mAspectRatio * mZoomLevel, mAspectRatio * mZoomLevel, -mZoomLevel, mZoomLevel);
@@ -80,6 +86,8 @@ namespace abcd
 
     bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e)
     {
+        AB_PROFILE_FUNCTION();
+
         mAspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
         mCamera.SetProjection(-mAspectRatio * mZoomLevel, mAspectRatio * mZoomLevel, -mZoomLevel, mZoomLevel);
         return false;

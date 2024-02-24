@@ -24,16 +24,22 @@ namespace abcd
 
     WindowsWindow::WindowsWindow(const WindowProps& props)
     {
+        AB_PROFILE_FUNCTION();
+
         Init(props);
     }
 
     WindowsWindow::~WindowsWindow()
     {
+        AB_PROFILE_FUNCTION();
+
         Shutdown();
     }
 
     void WindowsWindow::Init(const WindowProps& props)
     {
+        AB_PROFILE_FUNCTION();
+
         mData.Title = props.Title;
         mData.Width = props.Width;
         mData.Height = props.Height;
@@ -42,14 +48,18 @@ namespace abcd
 
         if (sGLFWWindowCount == 0)
         {
+            AB_PROFILE_SCOPE("glfwInit");
             int success = glfwInit();
             AB_CORE_ASSERT(success, "Could not intialize GLFW!");
 
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
-        mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
-        ++sGLFWWindowCount;
+        {
+            AB_PROFILE_SCOPE("glfwCreateWindow");
+            mWindow = glfwCreateWindow((int)props.Width, (int)props.Height, mData.Title.c_str(), nullptr, nullptr);
+            ++sGLFWWindowCount;
+        }
 
         mContext = IGraphicsContext::Create(mWindow);
         mContext->Init();
@@ -159,6 +169,8 @@ namespace abcd
 
     void WindowsWindow::Shutdown()
     {
+        AB_PROFILE_FUNCTION();
+
         glfwDestroyWindow(mWindow);
 
         --sGLFWWindowCount;
@@ -170,16 +182,24 @@ namespace abcd
 
     void WindowsWindow::OnUpdate()
     {
+        AB_PROFILE_FUNCTION();
+
         glfwPollEvents();
         mContext->SwapBuffers();
     }
 
     void WindowsWindow::SetVSync(bool enabled)
     {
+        AB_PROFILE_FUNCTION();
+
         if (enabled)
+        {
             glfwSwapInterval(1);
+        }
         else
+        {
             glfwSwapInterval(0);
+        }
 
         mData.VSync = enabled;
     }
