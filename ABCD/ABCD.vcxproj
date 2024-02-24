@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
     <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
     <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
     <ClInclude Include="src\ABCD.h" />
@@ -159,7 +160,6 @@
     <ClInclude Include="src\ABCD\Core\Layer.h" />
     <ClInclude Include="src\ABCD\Core\LayerStack.h" />
     <ClInclude Include="src\ABCD\Core\Log.h" />
-    <ClInclude Include="src\ABCD\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\ABCD\Core\Timestep.h" />
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h" />
     <ClInclude Include="src\ABCD\Events\Event.h" />

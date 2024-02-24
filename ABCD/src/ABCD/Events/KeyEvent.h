@@ -1,26 +1,27 @@
 #pragma once
 
 #include "ABCD/Events/Event.h"
+#include "ABCD/Core/Input.h"
 
 namespace abcd 
 {
     class KeyEvent : public Event
     {
     public:
-        inline int GetKeyCode() const { return mKeyCode; }
+        inline KeyCode GetKeyCode() const { return mKeyCode; }
 
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
     protected:
-        KeyEvent(int keycode)
+        KeyEvent(KeyCode keycode)
             : mKeyCode(keycode) {}
 
-        int mKeyCode;
+        KeyCode mKeyCode;
     };
 
     class KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(int keycode, int repeatCount)
+        KeyPressedEvent(KeyCode keycode, int repeatCount)
             : KeyEvent(keycode), mRepeatCount(repeatCount) {}
 
         inline int GetRepeatCount() const { return mRepeatCount; }
@@ -40,7 +41,7 @@ namespace abcd
     class KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(int keycode)
+        KeyReleasedEvent(KeyCode keycode)
             : KeyEvent(keycode) {}
 
         std::string ToString() const override
@@ -56,7 +57,7 @@ namespace abcd
     class KeyTypedEvent : public KeyEvent
     {
     public:
-        KeyTypedEvent(int keycode) 
+        KeyTypedEvent(KeyCode keycode)
             : KeyEvent(keycode) {}
 
         std::string ToString() const override

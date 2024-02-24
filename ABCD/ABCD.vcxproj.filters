@@ -84,9 +84,6 @@
     <ClInclude Include="src\ABCD\Core\Log.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Core\MouseButtonCodes.h">
-      <Filter>src\ABCD\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\ABCD\Core\Timestep.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
@@ -1415,6 +1412,7 @@
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
     <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
+    <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">

@@ -10,7 +10,7 @@
 
 #include "ABCD/Core/Input.h"
 #include "ABCD/Core/KeyCodes.h"
-#include "ABCD/Core/MouseButtonCodes.h"  
+#include "ABCD/Core/MouseCodes.h"
 #include "ABCD/Renderer/OrthographicCameraController.h"
 
 #include "ABCD/ImGui/ImGuiLayer.h"

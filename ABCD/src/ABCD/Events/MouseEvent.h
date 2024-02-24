@@ -3,6 +3,8 @@
 #include <sstream>
 
 #include "ABCD/Events/Event.h"
+#include "ABCD/Core/Input.h"
+
 
 namespace abcd 
 {
@@ -53,20 +55,20 @@ namespace abcd
     class MouseButtonEvent : public Event
     {
     public:
-        inline int GetMouseButton() const { return mButton; }
+        inline MouseCode GetMouseButton() const { return mButton; }
 
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     protected:
-        MouseButtonEvent(int button)
+        MouseButtonEvent(MouseCode button)
             : mButton(button) {}
 
-        int mButton;
+        MouseCode mButton;
     };
 
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(int button)
+        MouseButtonPressedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
@@ -82,7 +84,7 @@ namespace abcd
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(int button)
+        MouseButtonReleasedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
