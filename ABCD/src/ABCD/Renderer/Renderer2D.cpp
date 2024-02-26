@@ -125,7 +125,7 @@ namespace abcd
     {
         AB_PROFILE_FUNCTION();
 
-        uint32_t dataSize = (uint8_t*)sData.QuadVertexBufferPtr - (uint8_t*)sData.QuadVertexBufferBase;
+        uint32_t dataSize = (uint32_t)((uint8_t*)sData.QuadVertexBufferPtr - (uint8_t*)sData.QuadVertexBufferBase);
         sData.QuadVertexBuffer->SetData(sData.QuadVertexBufferBase, dataSize);
 
         Flush();
