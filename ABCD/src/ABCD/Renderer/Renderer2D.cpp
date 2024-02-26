@@ -200,7 +200,6 @@ namespace abcd
         AB_PROFILE_FUNCTION();
 
         constexpr size_t quadVertexCount = 4;
-        constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
         constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
 
         if (sData.QuadIndexCount >= Renderer2DData::MaxIndices)
@@ -236,7 +235,7 @@ namespace abcd
         for (size_t i = 0; i < quadVertexCount; i++)
         {
             sData.QuadVertexBufferPtr->Position = transform * sData.QuadVertexPositions[i];
-            sData.QuadVertexBufferPtr->Color = color;
+            sData.QuadVertexBufferPtr->Color = tintColor;
             sData.QuadVertexBufferPtr->TexCoord = textureCoords[i];
             sData.QuadVertexBufferPtr->TexIndex = textureIndex;
             sData.QuadVertexBufferPtr->TilingFactor = tilingFactor;
@@ -329,7 +328,7 @@ namespace abcd
         for (size_t i = 0; i < quadVertexCount; i++)
         {
             sData.QuadVertexBufferPtr->Position = transform * sData.QuadVertexPositions[i];
-            sData.QuadVertexBufferPtr->Color = color;
+            sData.QuadVertexBufferPtr->Color = tintColor;
             sData.QuadVertexBufferPtr->TexCoord = textureCoords[i];
             sData.QuadVertexBufferPtr->TexIndex = textureIndex;
             sData.QuadVertexBufferPtr->TilingFactor = tilingFactor;
