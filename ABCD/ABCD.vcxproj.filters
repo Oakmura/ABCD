@@ -114,6 +114,9 @@
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\IFrameBuffer.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
@@ -148,6 +151,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1422,8 +1428,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\IFrameBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
@@ -1451,6 +1455,9 @@
       <Filter>src\ABCD\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\IFrameBuffer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp">
@@ -1489,6 +1496,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1513,7 +1523,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\IFrameBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

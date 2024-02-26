@@ -19,7 +19,7 @@ namespace abcd
     class Application
     {
     public:
-        Application();
+        Application(const std::string& name = "ABCD App");
         virtual ~Application();
 
         void OnEvent(Event& e);

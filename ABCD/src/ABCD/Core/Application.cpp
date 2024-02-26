@@ -13,14 +13,14 @@ namespace abcd
 {
     Application* Application::sInstance = nullptr;
 
-    Application::Application()
+    Application::Application(const std::string& name)
     {
         AB_PROFILE_FUNCTION();
 
         AB_CORE_ASSERT(!sInstance, "Application already exists!");
         sInstance = this;
 
-        mWindow = IWindow::Create();
+        mWindow = IWindow::Create(WindowProps(name));
         mWindow->SetEventCallback(AB_BIND_EVENT_FN(Application::OnEvent));
 
         Renderer::Init();
