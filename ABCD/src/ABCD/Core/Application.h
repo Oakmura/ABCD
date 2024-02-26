@@ -29,6 +29,8 @@ namespace abcd
 
         IWindow& GetWindow() { return *mWindow; }
 
+        void Close();
+
         static Application& Get() { return *sInstance; }
 
     private:

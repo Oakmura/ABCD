@@ -36,6 +36,11 @@ namespace abcd
         Renderer::Shutdown();
     }
 
+    void Application::Close()
+    {
+        mbRunning = false;
+    }
+
     void Application::OnEvent(Event& e)
     {
         AB_PROFILE_FUNCTION();
