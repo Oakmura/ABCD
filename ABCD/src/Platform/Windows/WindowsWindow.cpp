@@ -49,7 +49,7 @@ namespace abcd
         {
             AB_PROFILE_SCOPE("glfwInit");
             int success = glfwInit();
-            AB_CORE_ASSERT(success, "Could not intialize GLFW!");
+            AB_CORE_ASSERT(success, "Could not initialize GLFW!");
 
             glfwSetErrorCallback(GLFWErrorCallback);
         }
