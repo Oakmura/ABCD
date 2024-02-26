@@ -218,6 +218,11 @@ namespace abcd
 
         if (textureIndex == 0.0f)
         {
+            if (sData.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+            {
+                FlushAndReset();
+            }
+
             textureIndex = (float)sData.TextureSlotIndex;
             sData.TextureSlots[sData.TextureSlotIndex] = texture;
             sData.TextureSlotIndex++;
@@ -305,6 +310,11 @@ namespace abcd
 
         if (textureIndex == 0.0f)
         {
+            if (sData.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+            {
+                FlushAndReset();
+            }
+
             textureIndex = (float)sData.TextureSlotIndex;
             sData.TextureSlots[sData.TextureSlotIndex] = texture;
             sData.TextureSlotIndex++;
