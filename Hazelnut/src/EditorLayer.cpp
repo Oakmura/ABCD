@@ -33,8 +33,11 @@ namespace abcd
         AB_PROFILE_FUNCTION();
 
         // Update
-        mCameraController.OnUpdate(ts);
-
+        if (mbViewportFocused)
+        {
+            mCameraController.OnUpdate(ts);
+        }
+            
         // Render
         abcd::Renderer2D::ResetStats();
         {
@@ -150,6 +153,11 @@ namespace abcd
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
         ImGui::Begin("Viewport");
+
+        mbViewportFocused = ImGui::IsWindowFocused();
+        mbViewportHovered = ImGui::IsWindowHovered();
+        Application::Get().GetImGuiLayer()->BlockEvents(!mbViewportFocused || !mbViewportHovered);
+
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
         if (mViewportSize != *((glm::vec2*)&viewportPanelSize))
         {

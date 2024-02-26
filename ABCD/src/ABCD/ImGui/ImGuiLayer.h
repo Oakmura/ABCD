@@ -21,6 +21,10 @@ namespace abcd
         void Begin();
         void End();
 
+        void BlockEvents(bool block) { mbBlockEvents = block; }
+    private:
+        bool mbBlockEvents = true;
+
     private:
         float mTime = 0.0f;
     };

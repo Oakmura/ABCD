@@ -168,9 +168,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -1434,9 +1431,6 @@
       <Filter>src\ABCD\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Core\IWindow.cpp">
-      <Filter>src\ABCD\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ABCD\Core\Input.cpp">
       <Filter>src\ABCD\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Core\Layer.cpp">

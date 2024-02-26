@@ -31,6 +31,8 @@ namespace abcd
 
         void Close();
 
+        ImGuiLayer* GetImGuiLayer() { return mImGuiLayer; }
+
         static Application& Get() { return *sInstance; }
 
     private:
