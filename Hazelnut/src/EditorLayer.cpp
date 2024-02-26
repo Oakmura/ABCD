@@ -32,6 +32,14 @@ namespace abcd
     {
         AB_PROFILE_FUNCTION();
 
+        // Resize
+        if (abcd::FramebufferSpecification spec = mFramebuffer->GetSpecification();
+            mViewportSize.x > 0.0f && mViewportSize.y > 0.0f &&  (spec.Width != mViewportSize.x || spec.Height != mViewportSize.y))
+        {
+            mFramebuffer->Resize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
+            mCameraController.OnResize(mViewportSize.x, mViewportSize.y);
+        }
+
         // Update
         if (mbViewportFocused)
         {
@@ -155,17 +163,11 @@ namespace abcd
         ImGui::Begin("Viewport");
 
         mbViewportFocused = ImGui::IsWindowFocused();
-        mbViewportHovered = ImGui::IsWindowHovered();
+        mbViewportHovered = ImGui::IsWindowHovered();   
         Application::Get().GetImGuiLayer()->BlockEvents(!mbViewportFocused || !mbViewportHovered);
 
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-        if (mViewportSize != *((glm::vec2*)&viewportPanelSize))
-        {
-            mFramebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-            mViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-
-            mCameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-        }
+        mViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
         uint32_t textureID = mFramebuffer->GetColorAttachmentRendererID();
         ImGui::Image((void*)textureID, ImVec2{ mViewportSize.x, mViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
         ImGui::End();
