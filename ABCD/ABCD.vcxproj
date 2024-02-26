@@ -76,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>abpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>AB_BUILD_DLL;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;AB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;AB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>abpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>AB_BUILD_DLL;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;AB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;AB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -125,7 +125,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>abpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>AB_BUILD_DLL;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;AB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;AB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -147,9 +147,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
-    <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
-    <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
     <ClInclude Include="src\ABCD\Core\Core.h" />
@@ -160,7 +157,9 @@
     <ClInclude Include="src\ABCD\Core\Layer.h" />
     <ClInclude Include="src\ABCD\Core\LayerStack.h" />
     <ClInclude Include="src\ABCD\Core\Log.h" />
+    <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
     <ClInclude Include="src\ABCD\Core\Timestep.h" />
+    <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h" />
     <ClInclude Include="src\ABCD\Events\Event.h" />
     <ClInclude Include="src\ABCD\Events\KeyEvent.h" />
@@ -176,6 +175,7 @@
     <ClInclude Include="src\ABCD\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\ABCD\Renderer\RenderCommand.h" />
     <ClInclude Include="src\ABCD\Renderer\Renderer.h" />
+    <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -604,17 +604,16 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ABCD\Core\Input.cpp" />
-    <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
-    <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />
-    <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
+    <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
+    <ClCompile Include="src\ABCD\Core\Input.cpp" />
     <ClCompile Include="src\ABCD\Core\Layer.cpp" />
     <ClCompile Include="src\ABCD\Core\LayerStack.cpp" />
     <ClCompile Include="src\ABCD\Core\Log.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IShader.cpp" />
     <ClCompile Include="src\ABCD\Renderer\ITexture.cpp" />
@@ -623,6 +622,7 @@
     <ClCompile Include="src\ABCD\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\ABCD\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />

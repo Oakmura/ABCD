@@ -10,6 +10,9 @@
     <Filter Include="src\ABCD\Core">
       <UniqueIdentifier>{5E55FE75-CA15-7AAC-9350-C329FFCFBE88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ABCD\Debug">
+      <UniqueIdentifier>{3C5CD535-282A-C93B-11BE-3962FD2AA5A0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\ABCD\Events">
       <UniqueIdentifier>{6A360BF4-D6C1-78B8-DFD2-FBAC4BDDD4B8}</UniqueIdentifier>
     </Filter>
@@ -84,8 +87,14 @@
     <ClInclude Include="src\ABCD\Core\Log.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Core\MouseCodes.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Core\Timestep.h">
       <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Debug\Instrumentor.h">
+      <Filter>src\ABCD\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h">
       <Filter>src\ABCD\Events</Filter>
@@ -130,6 +139,9 @@
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\Renderer.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\Renderer2D.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1410,12 +1422,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
-    <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
+      <Filter>src\ABCD\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Core\IWindow.cpp">
+      <Filter>src\ABCD\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Core\Input.cpp">
       <Filter>src\ABCD\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Core\Layer.cpp">
@@ -1434,6 +1449,9 @@
       <Filter>src\ABCD\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp">
@@ -1458,6 +1476,9 @@
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1490,9 +1511,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />
-    <ClCompile Include="src\ABCD\Core\Input.cpp" />
-    <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
   </ItemGroup>
 </Project>

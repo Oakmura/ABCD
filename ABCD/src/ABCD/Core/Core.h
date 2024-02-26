@@ -42,12 +42,22 @@
 #endif // End of platform detection
 
 #ifdef AB_DEBUG
+	#if defined(AB_PLATFORM_WINDOWS)
+		#define AB_DEBUGBREAK() __debugbreak()
+	#elif defined(AB_PLATFORM_LINUX)
+		#include <signal.h>
+		#define AB_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
     #define AB_ENABLE_ASSERTS
+#else
+    #define AB_DEBUGBREAK()
 #endif
 
 #ifdef AB_ENABLE_ASSERTS
-    #define AB_ASSERT(x, ...) { if(!(x)) { AB_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-    #define AB_CORE_ASSERT(x, ...) { if(!(x)) { AB_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define AB_ASSERT(x, ...) { if(!(x)) { AB_ERROR("Assertion Failed: {0}", __VA_ARGS__); AB_DEBUGBREAK(); } }
+	#define AB_CORE_ASSERT(x, ...) { if(!(x)) { AB_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); AB_DEBUGBREAK(); } }
 #else
     #define AB_ASSERT(x, ...)
     #define AB_CORE_ASSERT(x, ...)

@@ -57,6 +57,12 @@ project "ABCD"
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
+  defines
+  {
+    "_CRT_SECURE_NO_WARNINGS",
+  	"GLFW_INCLUDE_NONE",
+  } 
+
 	includedirs
 	{
 		"%{prj.name}/src",
@@ -81,9 +87,6 @@ project "ABCD"
 
 		defines
 		{
-			"AB_BUILD_DLL",
-			"GLFW_INCLUDE_NONE",
-      "_CRT_SECURE_NO_WARNINGS"
 		}
 
 	filter "configurations:Debug"
