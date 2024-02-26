@@ -14,10 +14,19 @@ namespace abcd
     OpenGLFramebuffer::~OpenGLFramebuffer()
     {
         glDeleteFramebuffers(1, &mRendererID);
+        glDeleteTextures(1, &mColorAttachment);
+        glDeleteTextures(1, &mDepthAttachment);
     }
 
     void OpenGLFramebuffer::Invalidate()
     {
+        if (mRendererID)
+        {
+            glDeleteFramebuffers(1, &mRendererID);
+            glDeleteTextures(1, &mColorAttachment);
+            glDeleteTextures(1, &mDepthAttachment);
+        }
+
         glCreateFramebuffers(1, &mRendererID);
         glBindFramebuffer(GL_FRAMEBUFFER, mRendererID);
 
@@ -32,8 +41,6 @@ namespace abcd
         glCreateTextures(GL_TEXTURE_2D, 1, &mDepthAttachment);
         glBindTexture(GL_TEXTURE_2D, mDepthAttachment);
         glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, mSpecification.Width, mSpecification.Height);
-        // glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, mSpecification.Width, mSpecification.Height, 0,
-        // 	GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, mDepthAttachment, 0);
 
         AB_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
@@ -44,10 +51,19 @@ namespace abcd
     void OpenGLFramebuffer::Bind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, mRendererID);
+        glViewport(0, 0, mSpecification.Width, mSpecification.Height);
     }
 
     void OpenGLFramebuffer::Unbind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
+    {
+        mSpecification.Width = width;
+        mSpecification.Height = height;
+
+        Invalidate();
     }
 }
