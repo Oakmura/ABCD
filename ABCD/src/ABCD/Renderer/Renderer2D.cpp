@@ -106,6 +106,8 @@ namespace abcd
     void Renderer2D::Shutdown()
     {
         AB_PROFILE_FUNCTION();
+
+        delete[] sData.QuadVertexBufferBase;
     }
 
     void Renderer2D::BeginScene(const OrthographicCamera& camera)
