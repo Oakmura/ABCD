@@ -39,7 +39,7 @@ namespace abcd
         virtual int GetCategoryFlags() const = 0;
         virtual std::string ToString() const { return GetName(); }
 
-        inline bool IsInCategory(eEventCategory category)
+        bool IsInCategory(eEventCategory category)
         {
             return GetCategoryFlags() & category;
         }

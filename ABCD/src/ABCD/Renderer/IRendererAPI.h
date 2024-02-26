@@ -21,7 +21,7 @@ namespace abcd
 
         virtual void DrawIndexed(const Ref<IVertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
 
-        inline static API GetAPI() { return sAPI; }
+        static API GetAPI() { return sAPI; }
         static Scope<IRendererAPI> Create();
     private:
         static API sAPI;

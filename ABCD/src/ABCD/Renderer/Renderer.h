@@ -20,7 +20,7 @@ namespace abcd
 
         static void Submit(const Ref<IShader>& shader, const Ref<IVertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
 
-        inline static IRendererAPI::API GetAPI() { return IRendererAPI::GetAPI(); }
+        static IRendererAPI::API GetAPI() { return IRendererAPI::GetAPI(); }
 
     private:
         struct SceneData

@@ -76,8 +76,8 @@ namespace abcd
             calculateOffsetsAndStride();
         }
 
-        inline uint32_t GetStride() const { return mStride; }
-        inline const std::vector<BufferElement>& GetElements() const { return mElements; }
+        uint32_t GetStride() const { return mStride; }
+        const std::vector<BufferElement>& GetElements() const { return mElements; }
 
         std::vector<BufferElement>::iterator begin() { return mElements.begin(); }
         std::vector<BufferElement>::iterator end() { return mElements.end(); }

@@ -27,9 +27,9 @@ namespace abcd
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
 
-        inline IWindow& GetWindow() { return *mWindow; }
+        IWindow& GetWindow() { return *mWindow; }
 
-        inline static Application& Get() { return *sInstance; }
+        static Application& Get() { return *sInstance; }
 
     private:
         void run();
