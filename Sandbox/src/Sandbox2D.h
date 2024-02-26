@@ -20,6 +20,7 @@ private:
     // Temp
     abcd::Ref<abcd::IVertexArray> mSquareVA;
     abcd::Ref<abcd::IShader> mFlatColorShader;
+    abcd::Ref<abcd::IFramebuffer> mFramebuffer;
 
     abcd::Ref<abcd::Texture2D> mCheckerboardTexture;
 

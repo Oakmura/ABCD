@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
     <ClInclude Include="src\ABCD\Core\Base.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\ABCD\Events\MouseEvent.h" />
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
+    <ClInclude Include="src\ABCD\Renderer\IFrameBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h" />
     <ClInclude Include="src\ABCD\Renderer\IRendererAPI.h" />
     <ClInclude Include="src\ABCD\Renderer\IShader.h" />
@@ -604,6 +606,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
     <ClCompile Include="src\ABCD\Core\Input.cpp" />
@@ -613,6 +616,7 @@
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\IFrameBuffer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IRendererAPI.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IShader.cpp" />
