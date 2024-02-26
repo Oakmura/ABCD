@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     app->run();
     AB_PROFILE_END_SESSION();
 
-    AB_PROFILE_BEGIN_SESSION("Startup", "ABCDProfile-Shutdown.json");
+    AB_PROFILE_BEGIN_SESSION("Shutdown", "ABCDProfile-Shutdown.json");
     delete app;
     AB_PROFILE_END_SESSION();
 }
