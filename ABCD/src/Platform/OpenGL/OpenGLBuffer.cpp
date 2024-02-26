@@ -9,6 +9,15 @@ namespace abcd
     // VertexBuffer /////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
 
+    OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
+    {
+        AB_PROFILE_FUNCTION();
+
+        glCreateBuffers(1, &mRendererID);
+        glBindBuffer(GL_ARRAY_BUFFER, mRendererID);
+        glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+    }
+
     OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
     {
         AB_PROFILE_FUNCTION();
@@ -37,6 +46,12 @@ namespace abcd
         AB_PROFILE_FUNCTION();
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
+    }
+
+    void OpenGLVertexBuffer::SetData(const void* data, uint32_t size)
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, mRendererID);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
     }
 
     /////////////////////////////////////////////////////////////////////////////

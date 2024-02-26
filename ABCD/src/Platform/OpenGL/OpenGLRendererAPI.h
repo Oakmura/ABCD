@@ -12,6 +12,6 @@ namespace abcd
         virtual void SetClearColor(const glm::vec4& color) override;
         virtual void Clear() override;
 
-        virtual void DrawIndexed(const Ref<IVertexArray>& vertexArray) override;
+        void OpenGLRendererAPI::DrawIndexed(const Ref<IVertexArray>& vertexArray, uint32_t indexCount);
     };
 }

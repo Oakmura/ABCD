@@ -108,12 +108,16 @@ namespace abcd
         virtual void Bind() const = 0;
         virtual void Unbind() const = 0;
 
+        virtual void SetData(const void* data, uint32_t size) = 0;
+
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(const BufferLayout& layout) = 0;
 
+        static Ref<IVertexBuffer> Create(uint32_t size);
         static Ref<IVertexBuffer> Create(float* vertices, uint32_t size);
     };
 
+    // Currently ABCD only supports 32-bit index buffers
     class IIndexBuffer
     {
     public:
@@ -124,6 +128,6 @@ namespace abcd
 
         virtual uint32_t GetCount() const = 0;
 
-        static Ref<IIndexBuffer> Create(uint32_t* indices, uint32_t size);
+        static Ref<IIndexBuffer> Create(uint32_t* indices, uint32_t count);
     };
 }

@@ -27,9 +27,9 @@ namespace abcd
             sRendererAPI->Clear();
         }
 
-        inline static void DrawIndexed(const Ref<IVertexArray>& vertexArray)
+        inline static void DrawIndexed(const Ref<IVertexArray>& vertexArray, uint32_t count = 0)
         {
-            sRendererAPI->DrawIndexed(vertexArray);
+            sRendererAPI->DrawIndexed(vertexArray, count);
         }
 
     private:

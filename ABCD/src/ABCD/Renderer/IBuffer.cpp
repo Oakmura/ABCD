@@ -7,6 +7,18 @@
 
 namespace abcd 
 {
+    Ref<IVertexBuffer> IVertexBuffer::Create(uint32_t size)
+    {
+        switch (Renderer::GetAPI())
+        {
+        case IRendererAPI::API::None:    AB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+        case IRendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(size);
+        }
+
+        AB_CORE_ASSERT(false, "Unknown RendererAPI!");
+        return nullptr;
+    }
+
     Ref<IVertexBuffer> IVertexBuffer::Create(float* vertices, uint32_t size)
     {
         switch (Renderer::GetAPI())
