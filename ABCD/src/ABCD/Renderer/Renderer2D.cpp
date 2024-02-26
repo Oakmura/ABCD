@@ -135,6 +135,11 @@ namespace abcd
 
     void Renderer2D::Flush()
     {
+        if (sData.QuadIndexCount == 0)
+        {
+            return;
+        }
+
         // Bind textures
         for (uint32_t i = 0; i < sData.TextureSlotIndex; i++)
         {
