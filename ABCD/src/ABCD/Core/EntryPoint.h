@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ABCD/Core/Core.h"
+#include "ABCD/Core/Base.h"
 
 #ifdef AB_PLATFORM_WINDOWS
 

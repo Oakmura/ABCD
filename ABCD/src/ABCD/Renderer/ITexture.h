@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "ABCD/Core/Core.h"
+#include "ABCD/Core/Base.h"
 
 namespace abcd
 {

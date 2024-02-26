@@ -149,7 +149,7 @@
   <ItemGroup>
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
-    <ClInclude Include="src\ABCD\Core\Core.h" />
+    <ClInclude Include="src\ABCD\Core\Base.h" />
     <ClInclude Include="src\ABCD\Core\EntryPoint.h" />
     <ClInclude Include="src\ABCD\Core\IWindow.h" />
     <ClInclude Include="src\ABCD\Core\Input.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ABCD/Core/Core.h"
+#include "ABCD/Core/Base.h"
 #include "ABCD/Core/KeyCodes.h"
 #include "ABCD/Core/MouseCodes.h"
 
