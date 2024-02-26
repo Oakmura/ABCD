@@ -16,6 +16,8 @@ namespace abcd
     class IFramebuffer
     {
     public:
+        virtual ~IFramebuffer() = default;
+
         virtual void Bind() = 0;
         virtual void Unbind() = 0;
 
