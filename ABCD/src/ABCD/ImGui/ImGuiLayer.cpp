@@ -62,6 +62,13 @@ namespace abcd
         ImGui::DestroyContext();
     }
 
+    void ImGuiLayer::OnEvent(Event& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        e.mbHandled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+        e.mbHandled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+    }
+
     void ImGuiLayer::Begin()
     {
         AB_PROFILE_FUNCTION();

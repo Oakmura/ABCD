@@ -46,11 +46,11 @@ namespace abcd
 
         for (auto it = mLayerStack.rbegin(); it != mLayerStack.rend(); ++it)
         {
-            (*it)->OnEvent(e);
             if (e.mbHandled)
             {
                 break;
             }
+            (*it)->OnEvent(e);
         }
     }
 
