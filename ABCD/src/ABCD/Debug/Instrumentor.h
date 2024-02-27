@@ -218,8 +218,10 @@ namespace abcd
 
 #define AB_PROFILE_BEGIN_SESSION(name, filepath) ::abcd::Instrumentor::Get().BeginSession(name, filepath)
 #define AB_PROFILE_END_SESSION() ::abcd::Instrumentor::Get().EndSession()
-#define AB_PROFILE_SCOPE(name) constexpr auto fixedName = ::abcd::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-									::abcd::InstrumentationTimer timer##__LINE__(fixedName.Data)
+#define AB_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::abcd::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+											   ::abcd::InstrumentationTimer timer##line(fixedName##line.Data)
+#define AB_PROFILE_SCOPE_LINE(name, line) AB_PROFILE_SCOPE_LINE2(name, line)
+#define AB_PROFILE_SCOPE(name) AB_PROFILE_SCOPE_LINE(name, __LINE__)
 #define AB_PROFILE_FUNCTION() AB_PROFILE_SCOPE(AB_FUNC_SIG)
 #else
 #define AB_PROFILE_BEGIN_SESSION(name, filepath)
