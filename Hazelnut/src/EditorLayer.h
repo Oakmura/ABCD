@@ -24,6 +24,9 @@ namespace abcd
 		Ref<IShader> mFlatColorShader;
 		Ref<IFramebuffer> mFramebuffer;
 
+        Ref<Scene> mActiveScene;
+        entt::entity mSquareEntity;
+
 		Ref<Texture2D> mCheckerboardTexture;
 
         bool mbViewportFocused = false;

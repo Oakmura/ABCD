@@ -5,6 +5,8 @@
 
 namespace abcd 
 {
+    static const uint32_t sMaxFramebufferSize = 8192;
+
     OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec)
         : mSpecification(spec)
     {
@@ -61,6 +63,12 @@ namespace abcd
 
     void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
     {
+        if (width == 0 || height == 0 || width > sMaxFramebufferSize || height > sMaxFramebufferSize)
+        {
+            AB_CORE_WARN("Attempted to rezize framebuffer to {0}, {1}", width, height);
+            return;
+        }
+
         mSpecification.Width = width;
         mSpecification.Height = height;
 

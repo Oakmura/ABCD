@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "ABCD/vendor/Glad/include"
 IncludeDir["ImGui"] = "ABCD/vendor/imgui"
 IncludeDir["glm"] = "ABCD/vendor/glm"
 IncludeDir["stb_image"] = "ABCD/vendor/stb_image"
+IncludeDir["entt"] = "ABCD/vendor/entt/include"
 
 group "Dependencies"
 	include "ABCD/vendor/GLFW"
@@ -71,7 +72,8 @@ project "ABCD"
 		"%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
   links 
@@ -172,7 +174,8 @@ project "Hazelnut"
 		"ABCD/vendor/spdlog/include",
 		"ABCD/src",
 		"ABCD/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links

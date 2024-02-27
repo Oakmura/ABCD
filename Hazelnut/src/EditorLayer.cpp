@@ -15,12 +15,20 @@ namespace abcd
     {
         AB_PROFILE_FUNCTION();
 
-        mCheckerboardTexture = abcd::Texture2D::Create("assets/textures/Checkerboard.png");
+        mCheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 
-        abcd::FramebufferSpecification fbSpec;
+        FramebufferSpecification fbSpec;
         fbSpec.Width = 1280;
         fbSpec.Height = 720;
-        mFramebuffer = abcd::IFramebuffer::Create(fbSpec);
+        mFramebuffer = IFramebuffer::Create(fbSpec);
+
+        mActiveScene = CreateRef<Scene>();
+
+        auto square = mActiveScene->CreateEntity();
+        mActiveScene->Reg().emplace<TransformComponent>(square);
+        mActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+        mSquareEntity = square;
     }
 
     void EditorLayer::OnDetach()
@@ -28,58 +36,28 @@ namespace abcd
         AB_PROFILE_FUNCTION();
     }
 
-    void EditorLayer::OnUpdate(abcd::Timestep ts)
+    void EditorLayer::OnUpdate(Timestep ts)
     {
         AB_PROFILE_FUNCTION();
 
-        // Resize
-        if (abcd::FramebufferSpecification spec = mFramebuffer->GetSpecification();
-            mViewportSize.x > 0.0f && mViewportSize.y > 0.0f &&  (spec.Width != mViewportSize.x || spec.Height != mViewportSize.y))
-        {
-            mFramebuffer->Resize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
-            mCameraController.OnResize(mViewportSize.x, mViewportSize.y);
-        }
-
         // Update
         if (mbViewportFocused)
-        {
             mCameraController.OnUpdate(ts);
-        }
-            
+
         // Render
-        abcd::Renderer2D::ResetStats();
-        {
-            AB_PROFILE_SCOPE("Renderer Prep");
-            mFramebuffer->Bind();
-            abcd::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-            abcd::RenderCommand::Clear();
-        }
+        Renderer2D::ResetStats();
+        mFramebuffer->Bind();
+        RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+        RenderCommand::Clear();
 
-        {
-            static float rotation = 0.0f;
-            rotation += ts * 50.0f;
+        Renderer2D::BeginScene(mCameraController.GetCamera());
 
-            AB_PROFILE_SCOPE("Renderer Draw");
-            abcd::Renderer2D::BeginScene(mCameraController.GetCamera());
-            abcd::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
-            abcd::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-            abcd::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, mSquareColor);
-            abcd::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, mCheckerboardTexture, 10.0f);
-            abcd::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, rotation, mCheckerboardTexture, 20.0f);
-            abcd::Renderer2D::EndScene();
+        // Update scene
+        mActiveScene->OnUpdate(ts);
 
-            abcd::Renderer2D::BeginScene(mCameraController.GetCamera());
-            for (float y = -5.0f; y < 5.0f; y += 0.5f)
-            {
-                for (float x = -5.0f; x < 5.0f; x += 0.5f)
-                {
-                    glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
-                    abcd::Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
-                }
-            }
-            abcd::Renderer2D::EndScene();
-            mFramebuffer->Unbind();
-        }
+        Renderer2D::EndScene();
+
+        mFramebuffer->Unbind();
     }
 
     void EditorLayer::OnImGuiRender()
@@ -139,7 +117,7 @@ namespace abcd
                 // which we can't undo at the moment without finer window depth/z control.
                 //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-                if (ImGui::MenuItem("Exit")) abcd::Application::Get().Close();
+                if (ImGui::MenuItem("Exit")) Application::Get().Close();
                 ImGui::EndMenu();
             }
 
@@ -148,14 +126,15 @@ namespace abcd
 
         ImGui::Begin("Settings");
 
-        auto stats = abcd::Renderer2D::GetStats();
+        auto stats = Renderer2D::GetStats();
         ImGui::Text("Renderer2D Stats:");
         ImGui::Text("Draw Calls: %d", stats.DrawCalls);
         ImGui::Text("Quads: %d", stats.QuadCount);
         ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
         ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-        ImGui::ColorEdit4("Square Color", glm::value_ptr(mSquareColor));
+        auto& squareColor = mActiveScene->Reg().get<SpriteRendererComponent>(mSquareEntity).Color;
+        ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
 
         ImGui::End();
 
@@ -163,11 +142,17 @@ namespace abcd
         ImGui::Begin("Viewport");
 
         mbViewportFocused = ImGui::IsWindowFocused();
-        mbViewportHovered = ImGui::IsWindowHovered();   
+        mbViewportHovered = ImGui::IsWindowHovered();
         Application::Get().GetImGuiLayer()->BlockEvents(!mbViewportFocused || !mbViewportHovered);
 
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-        mViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+        if (mViewportSize != *((glm::vec2*)&viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
+        {
+            mFramebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
+            mViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+
+            mCameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
+        }
         uint32_t textureID = mFramebuffer->GetColorAttachmentRendererID();
         ImGui::Image((void*)textureID, ImVec2{ mViewportSize.x, mViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
         ImGui::End();
@@ -176,9 +161,8 @@ namespace abcd
         ImGui::End();
     }
 
-    void EditorLayer::OnEvent(abcd::Event& e)
+    void EditorLayer::OnEvent(Event& e)
     {
         mCameraController.OnEvent(e);
     }
-
 }
