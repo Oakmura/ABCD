@@ -7,6 +7,11 @@
 #include <string>
 #include <thread>
 
+#include <mutex>
+#include <sstream>
+
+#include "ABCD/Core/Log.h"
+
 namespace abcd 
 {
     using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;

@@ -15,23 +15,23 @@ namespace abcd
     {
         AB_PROFILE_FUNCTION();
 
-        if (Input::IsKeyPressed(AB_KEY_A))
+        if (Input::IsKeyPressed(Key::A))
         {
             mCameraPosition.x -= cos(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
             mCameraPosition.y -= sin(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
         }
-        else if (Input::IsKeyPressed(AB_KEY_D))
+        else if (Input::IsKeyPressed(Key::D))
         {
             mCameraPosition.x += cos(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
             mCameraPosition.y += sin(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
         }
 
-        if (Input::IsKeyPressed(AB_KEY_W))
+        if (Input::IsKeyPressed(Key::W))
         {
             mCameraPosition.x += -sin(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
             mCameraPosition.y += cos(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
         }
-        else if (Input::IsKeyPressed(AB_KEY_S))
+        else if (Input::IsKeyPressed(Key::S))
         {
             mCameraPosition.x -= -sin(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
             mCameraPosition.y -= cos(glm::radians(mCameraRotationInDegree)) * mCameraTranslationSpeed * ts;
@@ -39,11 +39,11 @@ namespace abcd
 
         if (mbRotation)
         {
-            if (Input::IsKeyPressed(AB_KEY_Q))
+            if (Input::IsKeyPressed(Key::Q))
             {
                 mCameraRotationInDegree += mCameraRotationSpeed * ts;
             }
-            if (Input::IsKeyPressed(AB_KEY_E))
+            if (Input::IsKeyPressed(Key::E))
             {
                 mCameraRotationInDegree -= mCameraRotationSpeed * ts;
             }

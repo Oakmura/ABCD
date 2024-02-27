@@ -93,6 +93,9 @@
     <ClInclude Include="src\ABCD\Core\MouseCodes.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Core\PlatformDetection.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Core\Timestep.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h">
       <Filter>src\ABCD\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\Camera.h">
+      <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h">
       <Filter>src\ABCD\Renderer</Filter>
@@ -153,7 +159,16 @@
     <ClInclude Include="src\ABCD\Scene\Components.h">
       <Filter>src\ABCD\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Scene\Entity.h">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Scene\Scene.h">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Scene\SceneCamera.h">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Scene\ScriptableEntity.h">
       <Filter>src\ABCD\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1434,10 +1449,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Scene\Entity.h" />
-    <ClInclude Include="src\ABCD\Renderer\Camera.h" />
-    <ClInclude Include="src\ABCD\Scene\SceneCamera.h" />
-    <ClInclude Include="src\ABCD\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
@@ -1497,7 +1508,13 @@
     <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp">
       <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ABCD\Scene\Entity.cpp">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\ABCD\Scene\Scene.cpp">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Scene\SceneCamera.cpp">
       <Filter>src\ABCD\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1533,7 +1550,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Scene\Entity.cpp" />
-    <ClCompile Include="src\ABCD\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

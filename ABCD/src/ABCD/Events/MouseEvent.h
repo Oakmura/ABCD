@@ -3,15 +3,14 @@
 #include <sstream>
 
 #include "ABCD/Events/Event.h"
-#include "ABCD/Core/Input.h"
-
+#include "ABCD/Core/MouseCodes.h"
 
 namespace abcd 
 {
     class MouseMovedEvent : public Event
     {
     public:
-        MouseMovedEvent(float x, float y)
+        MouseMovedEvent(const float x, const float y)
             : mMouseX(x), mMouseY(y) {}
 
         float GetX() const { return mMouseX; }
@@ -33,14 +32,14 @@ namespace abcd
     class MouseScrolledEvent : public Event
     {
     public:
-        MouseScrolledEvent(float xOffset, float yOffset)
+        MouseScrolledEvent(const float xOffset, const float yOffset)
             : mXOffset(xOffset), mYOffset(yOffset) {}
 
         float GetXOffset() const { return mXOffset; }
         float GetYOffset() const { return mYOffset; }
 
         std::string ToString() const override
-        {
+        {   
             std::stringstream ss;
             ss << "MouseScrolledEvent: " << GetXOffset() << ", " << GetYOffset();
             return ss.str();
@@ -59,7 +58,7 @@ namespace abcd
 
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
     protected:
-        MouseButtonEvent(MouseCode button)
+        MouseButtonEvent(const MouseCode button)
             : mButton(button) {}
 
         MouseCode mButton;
@@ -68,7 +67,7 @@ namespace abcd
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(MouseCode button)
+        MouseButtonPressedEvent(const MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
@@ -84,7 +83,7 @@ namespace abcd
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(MouseCode button)
+        MouseButtonReleasedEvent(const MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override

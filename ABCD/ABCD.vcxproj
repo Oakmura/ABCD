@@ -147,8 +147,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ABCD\Renderer\Camera.h" />
-    <ClInclude Include="src\ABCD\Scene\Entity.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
     <ClInclude Include="src\ABCD\Core\Base.h" />
@@ -160,6 +158,7 @@
     <ClInclude Include="src\ABCD\Core\LayerStack.h" />
     <ClInclude Include="src\ABCD\Core\Log.h" />
     <ClInclude Include="src\ABCD\Core\MouseCodes.h" />
+    <ClInclude Include="src\ABCD\Core\PlatformDetection.h" />
     <ClInclude Include="src\ABCD\Core\Timestep.h" />
     <ClInclude Include="src\ABCD\Debug\Instrumentor.h" />
     <ClInclude Include="src\ABCD\Events\ApplicationEvent.h" />
@@ -167,6 +166,7 @@
     <ClInclude Include="src\ABCD\Events\KeyEvent.h" />
     <ClInclude Include="src\ABCD\Events\MouseEvent.h" />
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\ABCD\Renderer\Camera.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IFrameBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h" />
@@ -180,6 +180,7 @@
     <ClInclude Include="src\ABCD\Renderer\Renderer.h" />
     <ClInclude Include="src\ABCD\Renderer\Renderer2D.h" />
     <ClInclude Include="src\ABCD\Scene\Components.h" />
+    <ClInclude Include="src\ABCD\Scene\Entity.h" />
     <ClInclude Include="src\ABCD\Scene\Scene.h" />
     <ClInclude Include="src\ABCD\Scene\SceneCamera.h" />
     <ClInclude Include="src\ABCD\Scene\ScriptableEntity.h" />
@@ -611,7 +612,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ABCD\Scene\Entity.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
     <ClCompile Include="src\ABCD\Core\Layer.cpp" />
@@ -631,6 +631,7 @@
     <ClCompile Include="src\ABCD\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\ABCD\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\ABCD\Scene\Entity.cpp" />
     <ClCompile Include="src\ABCD\Scene\Scene.cpp" />
     <ClCompile Include="src\ABCD\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
