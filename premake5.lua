@@ -127,7 +127,8 @@ project "Sandbox"
 		"ABCD/vendor/spdlog/include",
 		"ABCD/src",
 		"ABCD/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
