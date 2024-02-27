@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-#include "ABCD/Renderer/Camera.h"
+#include "SceneCamera.h"
 
 namespace abcd 
 {
@@ -31,13 +31,12 @@ namespace abcd
 
     struct CameraComponent
     {
-        abcd::Camera Camera;
+        SceneCamera Camera;
         bool Primary = true; // TODO: think about moving to Scene
+        bool FixedAspectRatio = false;
 
         CameraComponent() = default;
         CameraComponent(const CameraComponent&) = default;
-        CameraComponent(const glm::mat4& projection)
-            : Camera(projection) {}
     };
 
     struct SpriteRendererComponent

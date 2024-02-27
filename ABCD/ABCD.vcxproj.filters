@@ -1436,6 +1436,7 @@
     </ClInclude>
     <ClInclude Include="src\ABCD\Scene\Entity.h" />
     <ClInclude Include="src\ABCD\Renderer\Camera.h" />
+    <ClInclude Include="src\ABCD\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
@@ -1532,5 +1533,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Scene\Entity.cpp" />
+    <ClCompile Include="src\ABCD\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

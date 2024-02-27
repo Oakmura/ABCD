@@ -31,10 +31,10 @@ namespace abcd
         mSquareEntity = square;
 
         mCameraEntity = mActiveScene->CreateEntity("Camera Entity");
-        mCameraEntity.AddComponent<CameraComponent>(glm::ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
+        mCameraEntity.AddComponent<CameraComponent>();
 
         mSecondCamera = mActiveScene->CreateEntity("Clip-Space Entity");
-        auto& cc = mSecondCamera.AddComponent<CameraComponent>(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f));
+        auto& cc = mSecondCamera.AddComponent<CameraComponent>();
         cc.Primary = false;
     }
 
@@ -54,6 +54,8 @@ namespace abcd
         {
             mFramebuffer->Resize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
             mCameraController.OnResize(mViewportSize.x, mViewportSize.y);
+
+            mActiveScene->OnViewportResize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
         }
 
         // Update
@@ -163,6 +165,15 @@ namespace abcd
         {
             mCameraEntity.GetComponent<CameraComponent>().Primary = mbPrimaryCamera;
             mSecondCamera.GetComponent<CameraComponent>().Primary = !mbPrimaryCamera;
+        }
+
+        {
+            auto& camera = mSecondCamera.GetComponent<CameraComponent>().Camera;
+            float orthoSize = camera.GetOrthographicSize();
+            if (ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
+            {
+                camera.SetOrthographicSize(orthoSize);
+            }
         }
 
         ImGui::End();
