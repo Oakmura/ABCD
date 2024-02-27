@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ABCD\Scene\Entity.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
     <ClInclude Include="src\ABCD\Core\Base.h" />
@@ -607,6 +608,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ABCD\Scene\Entity.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
     <ClCompile Include="src\ABCD\Core\Layer.cpp" />

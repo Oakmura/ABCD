@@ -24,9 +24,9 @@ namespace abcd
 
         mActiveScene = CreateRef<Scene>();
 
-        auto square = mActiveScene->CreateEntity();
-        mActiveScene->Reg().emplace<TransformComponent>(square);
-        mActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+        // Entity
+        auto square = mActiveScene->CreateEntity("Green Square");
+        square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
         mSquareEntity = square;
     }
@@ -142,8 +142,16 @@ namespace abcd
         ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
         ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-        auto& squareColor = mActiveScene->Reg().get<SpriteRendererComponent>(mSquareEntity).Color;
-        ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+        if (mSquareEntity)
+        {
+            ImGui::Separator();
+            auto& tag = mSquareEntity.GetComponent<TagComponent>().Tag;
+            ImGui::Text("%s", tag.c_str());
+
+            auto& squareColor = mSquareEntity.GetComponent<SpriteRendererComponent>().Color;
+            ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+            ImGui::Separator();
+        }
 
         ImGui::End();
 

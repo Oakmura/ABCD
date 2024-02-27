@@ -6,6 +6,8 @@
 
 #include <glm/glm.hpp>
 
+#include "Entity.h"
+
 namespace abcd
 {
     static void DoMath(const glm::mat4& transform)
@@ -49,9 +51,14 @@ namespace abcd
     {
     }
 
-    entt::entity Scene::CreateEntity()
+    Entity Scene::CreateEntity(const std::string& name)
     {
-        return mRegistry.create();
+        Entity entity = { mRegistry.create(), this };
+        entity.AddComponent<TransformComponent>();
+        auto& tag = entity.AddComponent<TagComponent>();
+        tag.Tag = name.empty() ? "Entity" : name;
+
+        return entity;
     }
 
     void Scene::OnUpdate(Timestep ts)

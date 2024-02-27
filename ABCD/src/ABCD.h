@@ -16,6 +16,7 @@
 #include "ABCD/ImGui/ImGuiLayer.h"
 
 #include "ABCD/Scene/Scene.h"
+#include "ABCD/Scene/Entity.h"
 #include "ABCD/Scene/Components.h"
 
 // ---Renderer------------------------

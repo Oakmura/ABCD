@@ -6,19 +6,20 @@
 
 namespace abcd 
 {
+    class Entity;
+
     class Scene
     {
     public:
         Scene();
         ~Scene();
 
-        entt::entity CreateEntity();
-
-        // TEMP
-        entt::registry& Reg() { return mRegistry; }
+        Entity CreateEntity(const std::string& name = std::string());
 
         void OnUpdate(Timestep ts);
     private:
         entt::registry mRegistry;
+
+        friend class Entity;
     };
 }
