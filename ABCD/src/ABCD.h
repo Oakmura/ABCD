@@ -17,6 +17,7 @@
 
 #include "ABCD/Scene/Scene.h"
 #include "ABCD/Scene/Entity.h"
+#include "ABCD/Scene/ScriptableEntity.h"
 #include "ABCD/Scene/Components.h"
 
 // ---Renderer------------------------
