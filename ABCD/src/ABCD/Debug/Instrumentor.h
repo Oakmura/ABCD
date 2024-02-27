@@ -27,15 +27,9 @@ namespace abcd
 
     class Instrumentor
     {
-    private:
-        std::mutex mMutex;
-        InstrumentationSession* mCurrentSession;
-        std::ofstream mOutputStream;
     public:
-        Instrumentor()
-            : mCurrentSession(nullptr)
-        {
-        }
+        Instrumentor(const Instrumentor&) = delete;
+        Instrumentor(Instrumentor&&) = delete;
 
         void BeginSession(const std::string& name, const std::string& filepath = "results.json")
         {
@@ -104,6 +98,15 @@ namespace abcd
         }
 
     private:
+        Instrumentor()
+            : mCurrentSession(nullptr)
+        {
+        }
+
+        ~Instrumentor()
+        {
+            EndSession();
+        }
 
         void WriteHeader()
         {
@@ -130,6 +133,10 @@ namespace abcd
             }
         }
 
+    private:
+        std::mutex mMutex;
+        InstrumentationSession* mCurrentSession;
+        std::ofstream mOutputStream;
     };
 
     class InstrumentationTimer
