@@ -1437,6 +1437,7 @@
     <ClInclude Include="src\ABCD\Scene\Entity.h" />
     <ClInclude Include="src\ABCD\Renderer\Camera.h" />
     <ClInclude Include="src\ABCD\Scene\SceneCamera.h" />
+    <ClInclude Include="src\ABCD\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
