@@ -26,6 +26,10 @@ namespace abcd
 
         Ref<Scene> mActiveScene;
         Entity mSquareEntity;
+        Entity mCameraEntity;
+        Entity mSecondCamera;
+
+        bool mbPrimaryCamera = true;
 
 		Ref<Texture2D> mCheckerboardTexture;
 

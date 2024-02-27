@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "ABCD/Renderer/Camera.h"
+
 namespace abcd 
 {
     struct TagComponent
@@ -25,6 +27,17 @@ namespace abcd
 
         operator glm::mat4& () { return Transform; }
         operator const glm::mat4& () const { return Transform; }
+    };
+
+    struct CameraComponent
+    {
+        abcd::Camera Camera;
+        bool Primary = true; // TODO: think about moving to Scene
+
+        CameraComponent() = default;
+        CameraComponent(const CameraComponent&) = default;
+        CameraComponent(const glm::mat4& projection)
+            : Camera(projection) {}
     };
 
     struct SpriteRendererComponent

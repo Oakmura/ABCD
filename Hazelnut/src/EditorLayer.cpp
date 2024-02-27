@@ -29,6 +29,13 @@ namespace abcd
         square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
         mSquareEntity = square;
+
+        mCameraEntity = mActiveScene->CreateEntity("Camera Entity");
+        mCameraEntity.AddComponent<CameraComponent>(glm::ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
+
+        mSecondCamera = mActiveScene->CreateEntity("Clip-Space Entity");
+        auto& cc = mSecondCamera.AddComponent<CameraComponent>(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f));
+        cc.Primary = false;
     }
 
     void EditorLayer::OnDetach()
@@ -59,12 +66,8 @@ namespace abcd
         RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
         RenderCommand::Clear();
 
-        Renderer2D::BeginScene(mCameraController.GetCamera());
-
         // Update scene
         mActiveScene->OnUpdate(ts);
-
-        Renderer2D::EndScene();
 
         mFramebuffer->Unbind();
     }
@@ -151,6 +154,15 @@ namespace abcd
             auto& squareColor = mSquareEntity.GetComponent<SpriteRendererComponent>().Color;
             ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
             ImGui::Separator();
+        }
+
+        ImGui::DragFloat3("Camera Transform",
+            glm::value_ptr(mCameraEntity.GetComponent<TransformComponent>().Transform[3]));
+
+        if (ImGui::Checkbox("Camera A", &mbPrimaryCamera))
+        {
+            mCameraEntity.GetComponent<CameraComponent>().Primary = mbPrimaryCamera;
+            mSecondCamera.GetComponent<CameraComponent>().Primary = !mbPrimaryCamera;
         }
 
         ImGui::End();

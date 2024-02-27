@@ -123,6 +123,21 @@ namespace abcd
         sData.TextureSlotIndex = 1;
     }
 
+    void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& transform)
+    {
+        AB_PROFILE_FUNCTION();
+
+        glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
+
+        sData.TextureShader->Bind();
+        sData.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+        sData.QuadIndexCount = 0;
+        sData.QuadVertexBufferPtr = sData.QuadVertexBufferBase;
+
+        sData.TextureSlotIndex = 1;
+    }
+
     void Renderer2D::EndScene()
     {
         AB_PROFILE_FUNCTION();
