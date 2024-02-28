@@ -2,30 +2,15 @@
 
 #include "ABCD/Core/Base.h"
 #include "ABCD/Core/Log.h"
+#include <filesystem>
 
 #ifdef AB_ENABLE_ASSERTS
-
-namespace abcd::Assert
-{
-    // Returns the simple file name rather than full path as suggested by LovelySanta
-    constexpr const char* CurrentFileName(const char* path) {
-        const char* file = path;
-        while (*path)
-        {
-            if (*path == '/' || *path == '\\')
-                file = ++path;
-            else
-                path++;
-        }
-        return file;
-    }
-}
 
 // Alteratively we could use the same "default" message for both "WITH_MSG" and "NO_MSG" and
 // provide support for custom formatting by concatenating the formatting string instead of having the format inside the default message
 #define AB_INTERNAL_ASSERT_IMPL(type, check, msg, ...) { if(!(check)) { AB##type##ERROR(msg, __VA_ARGS__); AB_DEBUGBREAK(); } }
 #define AB_INTERNAL_ASSERT_WITH_MSG(type, check, ...) AB_INTERNAL_ASSERT_IMPL(type, check, "Assertion failed: {0}", __VA_ARGS__)
-#define AB_INTERNAL_ASSERT_NO_MSG(type, check) AB_INTERNAL_ASSERT_IMPL(type, check, "Assertion '{0}' failed at {1}:{2}", AB_STRINGIFY_MACRO(check), ::abcd::Assert::CurrentFileName(__FILE__), __LINE__)
+#define AB_INTERNAL_ASSERT_NO_MSG(type, check) AB_INTERNAL_ASSERT_IMPL(type, check, "Assertion '{0}' failed at {1}:{2}", AB_STRINGIFY_MACRO(check), std::filesystem::path(__FILE__).filename().string(), __LINE__)
 
 #define AB_INTERNAL_ASSERT_GET_MACRO_NAME(arg1, arg2, macro, ...) macro
 #define AB_INTERNAL_ASSERT_GET_MACRO(...) AB_EXPAND_MACRO( AB_INTERNAL_ASSERT_GET_MACRO_NAME(__VA_ARGS__, AB_INTERNAL_ASSERT_WITH_MSG, AB_INTERNAL_ASSERT_NO_MSG) )
