@@ -117,10 +117,7 @@ namespace abcd
         sData.TextureShader->Bind();
         sData.TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 
-        sData.QuadIndexCount = 0;
-        sData.QuadVertexBufferPtr = sData.QuadVertexBufferBase;
-
-        sData.TextureSlotIndex = 1;
+        StartBatch();
     }
 
     void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& transform)
@@ -132,26 +129,31 @@ namespace abcd
         sData.TextureShader->Bind();
         sData.TextureShader->SetMat4("u_ViewProjection", viewProj);
 
-        sData.QuadIndexCount = 0;
-        sData.QuadVertexBufferPtr = sData.QuadVertexBufferBase;
-
-        sData.TextureSlotIndex = 1;
+        StartBatch();
     }
 
     void Renderer2D::EndScene()
     {
         AB_PROFILE_FUNCTION();
 
-        uint32_t dataSize = (uint32_t)((uint8_t*)sData.QuadVertexBufferPtr - (uint8_t*)sData.QuadVertexBufferBase);
-        sData.QuadVertexBuffer->SetData(sData.QuadVertexBufferBase, dataSize);
-
         Flush();
+    }
+
+    void Renderer2D::StartBatch()
+    {
+        sData.QuadIndexCount = 0;
+        sData.QuadVertexBufferPtr = sData.QuadVertexBufferBase;
+
+        sData.TextureSlotIndex = 1;
     }
 
     void Renderer2D::Flush()
     {
         if (sData.QuadIndexCount == 0)
             return; // Nothing to draw
+
+        uint32_t dataSize = (uint32_t)((uint8_t*)sData.QuadVertexBufferPtr - (uint8_t*)sData.QuadVertexBufferBase);
+        sData.QuadVertexBuffer->SetData(sData.QuadVertexBufferBase, dataSize);
 
         // Bind textures
         for (uint32_t i = 0; i < sData.TextureSlotIndex; i++)
@@ -161,14 +163,10 @@ namespace abcd
         sData.Stats.DrawCalls++;
     }
 
-    void Renderer2D::FlushAndReset()
+    void Renderer2D::NextBatch()
     {
-        EndScene();
-
-        sData.QuadIndexCount = 0;
-        sData.QuadVertexBufferPtr = sData.QuadVertexBufferBase;
-
-        sData.TextureSlotIndex = 1;
+        Flush();
+        StartBatch();
     }
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -211,7 +209,7 @@ namespace abcd
         const float tilingFactor = 1.0f;
 
         if (sData.QuadIndexCount >= Renderer2DData::MaxIndices)
-            FlushAndReset();
+            NextBatch();
 
         for (size_t i = 0; i < quadVertexCount; i++)
         {
@@ -236,7 +234,7 @@ namespace abcd
         constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
 
         if (sData.QuadIndexCount >= Renderer2DData::MaxIndices)
-            FlushAndReset();
+            NextBatch();
 
         float textureIndex = 0.0f;
         for (uint32_t i = 1; i < sData.TextureSlotIndex; i++)
@@ -251,7 +249,7 @@ namespace abcd
         if (textureIndex == 0.0f)
         {
             if (sData.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
-                FlushAndReset();
+                NextBatch();
 
             textureIndex = (float)sData.TextureSlotIndex;
             sData.TextureSlots[sData.TextureSlotIndex] = texture;
