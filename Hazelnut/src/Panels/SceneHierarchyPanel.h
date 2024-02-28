@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ABCD/Core/Base.h"
-#include "ABCD/Core/Log.h"
 #include "ABCD/Scene/Scene.h"
 #include "ABCD/Scene/Entity.h"
 

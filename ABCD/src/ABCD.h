@@ -5,6 +5,7 @@
 #include "ABCD/Core/Application.h"
 #include "ABCD/Core/Layer.h"
 #include "ABCD/Core/Log.h"
+#include "ABCD/Core/Assert.h"
 
 #include "ABCD/Core/Timestep.h"
 

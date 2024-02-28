@@ -18,14 +18,8 @@
     #define AB_DEBUGBREAK()
 #endif
 
-// #TODO: Make this macro able to take in no arguments except condition
-#ifdef AB_ENABLE_ASSERTS
-	#define AB_ASSERT(x, ...) { if(!(x)) { AB_ERROR("Assertion Failed: {0}", __VA_ARGS__); AB_DEBUGBREAK(); } }
-	#define AB_CORE_ASSERT(x, ...) { if(!(x)) { AB_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); AB_DEBUGBREAK(); } }
-#else
-    #define AB_ASSERT(x, ...)
-    #define AB_CORE_ASSERT(x, ...)
-#endif
+#define AB_EXPAND_MACRO(x) x
+#define AB_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -49,3 +43,6 @@ namespace abcd
         return std::make_shared<T>(std::forward<Args>(args)...);
     }
 }
+
+#include "ABCD/Core/Log.h"
+#include "ABCD/Core/Assert.h"
