@@ -18,6 +18,7 @@ namespace abcd
         void OnImGuiRender();
     private:
         void DrawEntityNode(Entity entity);
+        void DrawComponents(Entity entity);
     private:
         Ref<Scene> mContext;
         Entity mSelectionContext;
