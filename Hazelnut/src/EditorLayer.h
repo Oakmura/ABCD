@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ABCD.h"
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace abcd 
 {
@@ -37,6 +38,9 @@ namespace abcd
         bool mbViewportHovered = false;
         glm::vec2 mViewportSize = { 0.0f, 0.0f };
 
-		glm::vec4 mSquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+        glm::vec4 mSquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+        // Panels
+        SceneHierarchyPanel mSceneHierarchyPanel;
 	};
 }

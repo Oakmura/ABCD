@@ -42,6 +42,17 @@ namespace abcd
         }
 
         operator bool() const { return mEntityHandle != entt::null; }
+        operator uint32_t() const { return (uint32_t)mEntityHandle; }
+
+        bool operator==(const Entity& other) const
+        {
+            return mEntityHandle == other.mEntityHandle && mScene == other.mScene;
+        }
+
+        bool operator!=(const Entity& other) const
+        {
+            return !(*this == other);
+        }
     private:
         entt::entity mEntityHandle{ entt::null };
         Scene* mScene = nullptr;

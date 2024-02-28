@@ -27,7 +27,6 @@ namespace abcd
         // Entity
         auto square = mActiveScene->CreateEntity("Green Square");
         square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
-
         mSquareEntity = square;
 
         mCameraEntity = mActiveScene->CreateEntity("Camera Entity");
@@ -68,6 +67,8 @@ namespace abcd
 
         mCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
         mSecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+        mSceneHierarchyPanel.SetContext(mActiveScene);
     }
 
     void EditorLayer::OnDetach()
@@ -169,6 +170,8 @@ namespace abcd
 
             ImGui::EndMenuBar();
         }
+
+        mSceneHierarchyPanel.OnImGuiRender();
 
         ImGui::Begin("Settings");
 
