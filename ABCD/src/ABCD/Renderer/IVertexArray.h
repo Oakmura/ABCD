@@ -21,5 +21,4 @@ namespace abcd
 
         static Ref<IVertexArray> Create();
     };
-
 }
