@@ -56,7 +56,7 @@ namespace abcd
     public:
         MouseCode GetMouseButton() const { return mButton; }
 
-        EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+        EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
     protected:
         MouseButtonEvent(const MouseCode button)
             : mButton(button) {}
