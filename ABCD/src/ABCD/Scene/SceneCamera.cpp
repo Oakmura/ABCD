@@ -10,21 +10,21 @@ namespace abcd
         RecalculateProjection();
     }
 
-    void SceneCamera::SetOrthographic(float size, float nearClip, float farClip)
-    {
-        mProjectionType = ProjectionType::Orthographic;
-        mOrthographicSize = size;
-        mOrthographicNear = nearClip;
-        mOrthographicFar = farClip;
-        RecalculateProjection();
-    }
-
     void SceneCamera::SetPerspective(float verticalFOV, float nearClip, float farClip)
     {
         mProjectionType = ProjectionType::Perspective;
         mPerspectiveFOV = verticalFOV;
         mPerspectiveNear = nearClip;
         mPerspectiveFar = farClip;
+        RecalculateProjection();
+    }
+
+    void SceneCamera::SetOrthographic(float size, float nearClip, float farClip)
+    {
+        mProjectionType = ProjectionType::Orthographic;
+        mOrthographicSize = size;
+        mOrthographicNear = nearClip;
+        mOrthographicFar = farClip;
         RecalculateProjection();
     }
 
