@@ -64,7 +64,7 @@ namespace abcd
         {
             if (mEvent.GetEventType() == T::GetStaticType())
             {
-                mEvent.mbHandled = func(static_cast<T&>(mEvent));
+                mEvent.mbHandled |= func(static_cast<T&>(mEvent));
                 return true;
             }
             return false;
