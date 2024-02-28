@@ -22,6 +22,8 @@ namespace abcd
         void End();
 
         void BlockEvents(bool block) { mbBlockEvents = block; }
+
+        void SetDarkThemeColors();
     private:
         bool mbBlockEvents = true;
 
