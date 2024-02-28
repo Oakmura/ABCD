@@ -17,7 +17,9 @@ namespace abcd
         T& AddComponent(Args&&... args)
         {
             AB_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
-            return mScene->mRegistry.emplace<T>(mEntityHandle, std::forward<Args>(args)...);
+            T& component = mScene->mRegistry.emplace<T>(mEntityHandle, std::forward<Args>(args)...);
+            mScene->OnComponentAdded<T>(*this, component);
+            return component;
         }
 
         template<typename T>
@@ -42,6 +44,7 @@ namespace abcd
         }
 
         operator bool() const { return mEntityHandle != entt::null; }
+        operator entt::entity() const { return mEntityHandle; }
         operator uint32_t() const { return (uint32_t)mEntityHandle; }
 
         bool operator==(const Entity& other) const
