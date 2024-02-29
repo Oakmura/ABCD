@@ -1,8 +1,10 @@
-    #include "EditorLayer.h"
+#include "EditorLayer.h"
 #include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "ABCD/Scene/SceneSerializer.h"
 
 namespace abcd 
 {
@@ -24,6 +26,7 @@ namespace abcd
 
         mActiveScene = CreateRef<Scene>();
 
+#if 0
         // Entity
         auto square = mActiveScene->CreateEntity("Green Square");
         square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
@@ -70,6 +73,7 @@ namespace abcd
 
         mCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
         mSecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+#endif
 
         mSceneHierarchyPanel.SetContext(mActiveScene);
     }
@@ -170,6 +174,19 @@ namespace abcd
                 // Disabling fullscreen would allow the window to be moved to the front of other windows, 
                 // which we can't undo at the moment without finer window depth/z control.
                 //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+
+                if (ImGui::MenuItem("Serialize"))
+                {
+                    SceneSerializer serializer(mActiveScene);
+                    serializer.Serialize("assets/scenes/Example.abcd");
+                }
+
+                if (ImGui::MenuItem("Deserialize"))
+                {
+                    SceneSerializer serializer(mActiveScene);
+                    serializer.Deserialize("assets/scenes/Example.abcd");
+                }
+
 
                 if (ImGui::MenuItem("Exit")) Application::Get().Close();
                 ImGui::EndMenu();

@@ -24,11 +24,13 @@ IncludeDir["ImGui"] = "ABCD/vendor/imgui"
 IncludeDir["glm"] = "ABCD/vendor/glm"
 IncludeDir["stb_image"] = "ABCD/vendor/stb_image"
 IncludeDir["entt"] = "ABCD/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "ABCD/vendor/yaml-cpp/include"
 
 group "Dependencies"
 	include "ABCD/vendor/GLFW"
   include "ABCD/vendor/Glad"
   include "ABCD/vendor/imgui"
+	include "ABCD/vendor/yaml-cpp"
 group ""
 
 include "ABCD/vendor/GLFW"
@@ -73,7 +75,8 @@ project "ABCD"
     "%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
   links 
@@ -81,6 +84,7 @@ project "ABCD"
 		"GLFW",
     "Glad",
     "ImGui",
+		"yaml-cpp",
 		"opengl32.lib"
 	}
 

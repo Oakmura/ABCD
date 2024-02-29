@@ -66,6 +66,9 @@
     <ClInclude Include="src\ABCD\Core\Application.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Core\Assert.h">
+      <Filter>src\ABCD\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Core\Base.h">
       <Filter>src\ABCD\Core</Filter>
     </ClInclude>
@@ -166,6 +169,9 @@
       <Filter>src\ABCD\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Scene\SceneCamera.h">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Scene\SceneSerializer.h">
       <Filter>src\ABCD\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Scene\ScriptableEntity.h">
@@ -1449,7 +1455,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Core\Assert.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
@@ -1516,6 +1521,9 @@
       <Filter>src\ABCD\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Scene\SceneCamera.cpp">
+      <Filter>src\ABCD\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Scene\SceneSerializer.cpp">
       <Filter>src\ABCD\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
