@@ -231,13 +231,19 @@ namespace abcd
         {
             if (ImGui::MenuItem("Camera"))
             {
-                mSelectionContext.AddComponent<CameraComponent>();
+                if (!mSelectionContext.HasComponent<CameraComponent>())
+                    mSelectionContext.AddComponent<CameraComponent>();
+                else
+                    AB_CORE_WARN("This entity already has the Camera Component!");
                 ImGui::CloseCurrentPopup();
             }
 
             if (ImGui::MenuItem("Sprite Renderer"))
             {
-                mSelectionContext.AddComponent<SpriteRendererComponent>();
+                if (!mSelectionContext.HasComponent<SpriteRendererComponent>())
+                    mSelectionContext.AddComponent<SpriteRendererComponent>();
+                else
+                    AB_CORE_WARN("This entity already has the Sprite Renderer Component!");
                 ImGui::CloseCurrentPopup();
             }
 
