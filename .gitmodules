@@ -14,3 +14,6 @@
 [submodule "ABCD/vendor/yaml-cpp"]
 	path = ABCD/vendor/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp
+[submodule "ABCD/vendor/ImGuizmo"]
+	path = ABCD/vendor/ImGuizmo
+	url = https://github.com/thecherno/imguizmo

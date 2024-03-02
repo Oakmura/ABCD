@@ -25,6 +25,7 @@ IncludeDir["glm"] = "ABCD/vendor/glm"
 IncludeDir["stb_image"] = "ABCD/vendor/stb_image"
 IncludeDir["entt"] = "ABCD/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "ABCD/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "ABCD/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "ABCD/vendor/GLFW"
@@ -58,6 +59,8 @@ project "ABCD"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.h",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.cpp"
 	}
 
   defines
@@ -76,7 +79,8 @@ project "ABCD"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
+		"%{IncludeDir.yaml_cpp}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
   links 
@@ -87,6 +91,9 @@ project "ABCD"
 		"yaml-cpp",
 		"opengl32.lib"
 	}
+  
+	filter "files:ABCD/vendor/ImGuizmo/**.cpp"
+	  flags { "NoPCH" }
 
 	filter "system:windows"
 		systemversion "latest"
@@ -180,7 +187,8 @@ project "Hazelnut"
 		"ABCD/src",
 		"ABCD/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links
