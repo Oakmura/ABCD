@@ -6,6 +6,8 @@
 
 #include "ABCD/Scene/SceneSerializer.h"
 
+#include "ABCD/Utils/PlatformUtils.h"
+
 namespace abcd 
 {
     EditorLayer::EditorLayer()
@@ -174,19 +176,14 @@ namespace abcd
                 // Disabling fullscreen would allow the window to be moved to the front of other windows, 
                 // which we can't undo at the moment without finer window depth/z control.
                 //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+                if (ImGui::MenuItem("New", "Ctrl+N"))
+                    NewScene();
 
-                if (ImGui::MenuItem("Serialize"))
-                {
-                    SceneSerializer serializer(mActiveScene);
-                    serializer.Serialize("assets/scenes/Example.abcd");
-                }
+                if (ImGui::MenuItem("Open...", "Ctrl+O"))
+                    OpenScene();
 
-                if (ImGui::MenuItem("Deserialize"))
-                {
-                    SceneSerializer serializer(mActiveScene);
-                    serializer.Deserialize("assets/scenes/Example.abcd");
-                }
-
+                if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+                    SaveSceneAs();
 
                 if (ImGui::MenuItem("Exit")) Application::Get().Close();
                 ImGui::EndMenu();
@@ -228,5 +225,73 @@ namespace abcd
     void EditorLayer::OnEvent(Event& e)
     {
         mCameraController.OnEvent(e);
+
+        EventDispatcher dispatcher(e);
+        dispatcher.Dispatch<KeyPressedEvent>(AB_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+    }
+
+    bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+    {
+        // Shortcuts
+        if (e.GetRepeatCount() > 0)
+            return false;
+
+        bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+        bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
+        switch (e.GetKeyCode())
+        {
+        case Key::N:
+        {
+            if (control)
+                NewScene();
+
+            break;
+        }
+        case Key::O:
+        {
+            if (control)
+                OpenScene();
+
+            break;
+        }
+        case Key::S:
+        {
+            if (control && shift)
+                SaveSceneAs();
+
+            break;
+        }
+        }
+    }
+
+    void EditorLayer::NewScene()
+    {
+        mActiveScene = CreateRef<Scene>();
+        mActiveScene->OnViewportResize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
+        mSceneHierarchyPanel.SetContext(mActiveScene);
+    }
+
+    void EditorLayer::OpenScene()
+    {
+        std::string filepath = FileDialogs::OpenFile("ABCD Scene (*.abcd)\0*.abcd\0");
+        if (!filepath.empty())
+        {
+            mActiveScene = CreateRef<Scene>();
+            mActiveScene->OnViewportResize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
+            mSceneHierarchyPanel.SetContext(mActiveScene);
+
+            SceneSerializer serializer(mActiveScene);
+            serializer.Deserialize(filepath);
+        }
+    }
+
+    void EditorLayer::SaveSceneAs()
+    {
+        std::string filepath = FileDialogs::SaveFile("ABCD Scene (*.abcd)\0*.abcd\0");
+        if (!filepath.empty())
+        {
+            SceneSerializer serializer(mActiveScene);
+            serializer.Serialize(filepath);
+        }
     }
 }

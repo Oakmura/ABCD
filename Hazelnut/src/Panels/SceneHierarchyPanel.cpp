@@ -12,6 +12,7 @@ namespace abcd
     SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
     {
         SetContext(context);
+        mSelectionContext = {};
     }
 
     void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
@@ -26,7 +27,7 @@ namespace abcd
         mContext->mRegistry.view<entt::entity>().each([&](auto entityID)
             {
                 Entity entity{ entityID , mContext.get() };
-                DrawEntityNode(entity);
+                DrawEntityNode(entity); 
             });
 
         if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())

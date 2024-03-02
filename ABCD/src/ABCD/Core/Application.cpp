@@ -110,7 +110,7 @@ namespace abcd
             Timestep timestep = time - mLastFrameTime;
             mLastFrameTime = time;
 
-            if (!mbMinimized)
+            if (!mbMinimized) // update
             {
                 {
                     AB_PROFILE_SCOPE("LayerStack OnUpdate");
@@ -122,7 +122,7 @@ namespace abcd
                 }
             }
 
-            mImGuiLayer->Begin();
+            mImGuiLayer->Begin(); // imgui render
             {
                 AB_PROFILE_SCOPE("LayerStack OnImGuiRender");
                 for (Layer* layer : mLayerStack)
