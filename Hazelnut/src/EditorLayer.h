@@ -3,6 +3,8 @@
 #include "ABCD.h"
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "ABCD/Renderer/EditorCamera.h"
+
 namespace abcd 
 {
 	class EditorLayer : public Layer
@@ -39,6 +41,8 @@ namespace abcd
         Entity mSecondCamera;
 
         bool mbPrimaryCamera = true;
+
+        EditorCamera mEditorCamera;
 
 		Ref<Texture2D> mCheckerboardTexture;
 

@@ -132,6 +132,18 @@ namespace abcd
         StartBatch();
     }
 
+    void Renderer2D::BeginScene(const EditorCamera& camera)
+    {
+        AB_PROFILE_FUNCTION();
+
+        glm::mat4 viewProj = camera.GetViewProjection();
+
+        sData.TextureShader->Bind();
+        sData.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+        StartBatch();
+    }
+
     void Renderer2D::EndScene()
     {
         AB_PROFILE_FUNCTION();

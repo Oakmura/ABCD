@@ -1,8 +1,9 @@
 #pragma once
 
-#include "entt.hpp"
-
 #include "ABCD/Core/Timestep.h"
+#include "ABCD/Renderer/EditorCamera.h"
+
+#include "entt.hpp"
 
 namespace abcd 
 {
@@ -17,7 +18,8 @@ namespace abcd
         Entity CreateEntity(const std::string& name = std::string());
         void DestroyEntity(Entity entity);
 
-        void OnUpdate(Timestep ts);
+        void OnUpdateRuntime(Timestep ts);
+        void OnUpdateEditor(Timestep ts, EditorCamera& camera);
         void OnViewportResize(uint32_t width, uint32_t height);
 
         Entity GetPrimaryCameraEntity();

@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ABCD\Renderer\EditorCamera.h" />
     <ClInclude Include="src\ABCD\Math\Math.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
@@ -617,6 +618,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ABCD\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\ABCD\Math\Math.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
