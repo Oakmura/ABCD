@@ -273,25 +273,25 @@ namespace abcd
 
     void EditorLayer::OpenScene()
     {
-        std::string filepath = FileDialogs::OpenFile("ABCD Scene (*.abcd)\0*.abcd\0");
-        if (!filepath.empty())
+        std::optional<std::string> filepath = FileDialogs::OpenFile("ABCD Scene (*.abcd)\0*.abcd\0");
+        if (filepath)
         {
             mActiveScene = CreateRef<Scene>();
             mActiveScene->OnViewportResize((uint32_t)mViewportSize.x, (uint32_t)mViewportSize.y);
             mSceneHierarchyPanel.SetContext(mActiveScene);
 
             SceneSerializer serializer(mActiveScene);
-            serializer.Deserialize(filepath);
+            serializer.Deserialize(*filepath);
         }
     }
 
     void EditorLayer::SaveSceneAs()
     {
-        std::string filepath = FileDialogs::SaveFile("ABCD Scene (*.abcd)\0*.abcd\0");
-        if (!filepath.empty())
+        std::optional<std::string> filepath = FileDialogs::SaveFile("ABCD Scene (*.abcd)\0*.abcd\0");
+        if (filepath)
         {
             SceneSerializer serializer(mActiveScene);
-            serializer.Serialize(filepath);
+            serializer.Serialize(*filepath);
         }
     }
 }
