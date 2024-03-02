@@ -1,6 +1,7 @@
 #include "abpch.h"
 #include "ABCD/Utils/PlatformUtils.h"
 
+#include <sstream>
 #include <commdlg.h>
 #include <GLFW/glfw3.h>
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -21,6 +22,9 @@ namespace abcd
         ofn.nMaxFile = sizeof(szFile);
         ofn.lpstrFilter = filter;
         ofn.nFilterIndex = 1;
+
+        // Sets the default extension by extracting it from the filter
+        ofn.lpstrDefExt = strchr(filter, '\0') + 1; // #FIX should be std::strchr ..? 
         ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
         if (GetOpenFileNameA(&ofn) == TRUE)
         {
