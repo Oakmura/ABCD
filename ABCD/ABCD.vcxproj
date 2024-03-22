@@ -147,8 +147,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ABCD\Renderer\EditorCamera.h" />
-    <ClInclude Include="src\ABCD\Math\Math.h" />
     <ClInclude Include="src\ABCD.h" />
     <ClInclude Include="src\ABCD\Core\Application.h" />
     <ClInclude Include="src\ABCD\Core\Assert.h" />
@@ -169,7 +167,9 @@
     <ClInclude Include="src\ABCD\Events\KeyEvent.h" />
     <ClInclude Include="src\ABCD\Events\MouseEvent.h" />
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\ABCD\Math\Math.h" />
     <ClInclude Include="src\ABCD\Renderer\Camera.h" />
+    <ClInclude Include="src\ABCD\Renderer\EditorCamera.h" />
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IFrameBuffer.h" />
     <ClInclude Include="src\ABCD\Renderer\IGraphicsContext.h" />
@@ -618,8 +618,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ABCD\Renderer\EditorCamera.cpp" />
-    <ClCompile Include="src\ABCD\Math\Math.cpp" />
     <ClCompile Include="src\ABCD\Core\Application.cpp" />
     <ClCompile Include="src\ABCD\Core\IWindow.cpp" />
     <ClCompile Include="src\ABCD\Core\Layer.cpp" />
@@ -627,6 +625,8 @@
     <ClCompile Include="src\ABCD\Core\Log.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\ABCD\Math\Math.cpp" />
+    <ClCompile Include="src\ABCD\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IFrameBuffer.cpp" />
     <ClCompile Include="src\ABCD\Renderer\IGraphicsContext.cpp" />

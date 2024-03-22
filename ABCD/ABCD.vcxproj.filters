@@ -19,6 +19,9 @@
     <Filter Include="src\ABCD\ImGui">
       <UniqueIdentifier>{F0C63336-DC94-273C-C528-9862B19503A1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ABCD\Math">
+      <UniqueIdentifier>{DF950376-4B56-7FAC-1491-C8298010C488}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\ABCD\Renderer">
       <UniqueIdentifier>{AC87AD1A-189E-ABB0-6115-37D2CD6A7C38}</UniqueIdentifier>
     </Filter>
@@ -126,7 +129,13 @@
     <ClInclude Include="src\ABCD\ImGui\ImGuiLayer.h">
       <Filter>src\ABCD\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\ABCD\Math\Math.h">
+      <Filter>src\ABCD\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\Camera.h">
+      <Filter>src\ABCD\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ABCD\Renderer\EditorCamera.h">
       <Filter>src\ABCD\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ABCD\Renderer\IBuffer.h">
@@ -1467,8 +1476,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ABCD\Math\Math.h" />
-    <ClInclude Include="src\ABCD\Renderer\EditorCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ABCD\Core\Application.cpp">
@@ -1491,6 +1498,12 @@
     </ClCompile>
     <ClCompile Include="src\ABCD\ImGui\ImGuiLayer.cpp">
       <Filter>src\ABCD\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Math\Math.cpp">
+      <Filter>src\ABCD\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ABCD\Renderer\EditorCamera.cpp">
+      <Filter>src\ABCD\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ABCD\Renderer\IBuffer.cpp">
       <Filter>src\ABCD\Renderer</Filter>
@@ -1579,7 +1592,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ABCD\Math\Math.cpp" />
-    <ClCompile Include="src\ABCD\Renderer\EditorCamera.cpp" />
   </ItemGroup>
 </Project>
