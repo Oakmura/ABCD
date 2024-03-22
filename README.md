@@ -1,5 +1,5 @@
  # ABCD Engine
-This is an effort to learn architecture and inner workings of Game Engine as I clone code [The Cherno Game Engine Series](https://www.youtube.com/watch?v=JxIZbV_XjAs&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=1)
+This is an effort to learn inner workings and architecture of Game Engine as I clone code [The Cherno Game Engine Series](https://www.youtube.com/watch?v=JxIZbV_XjAs&list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&index=1)
 
 <a name = "snapshots"></a>
 **Snapshot as of now**
